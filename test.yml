@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - image: siddharthgopalpatel/test:latest
-        name: nginx
+          name: nginx
 ---
 
 apiVersion: v1
