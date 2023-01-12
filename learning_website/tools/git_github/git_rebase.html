@@ -1,0 +1,14 @@
+<html><h2><center><u>Git Rebase</u></center>
+<h4><pre>
+As an alternative to merging, you can rebase the feature branch onto master branch.
+
+$ git checkout feature
+$ git rebase master
+
+Note 1. This moves the entire feature branch to begin on the tip of the master branch, effectively incorporating all of the new commits in master.
+        But instead of using a merge commit, rebasing re-writes the project history by creating brand new commits for each commit in the original
+		branch.
+	 2. The major benefit of rebasing is that you can get a much clear project history. First, it eliminates the unnucessary merge commits requited
+		by git merge. Second, rebasing also results in a perfectly linear project history.
+</pre></h4>
+</h2></html>

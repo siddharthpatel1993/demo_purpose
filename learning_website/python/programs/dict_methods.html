@@ -1,0 +1,85 @@
+<html><h3><pre>
+Dict1 = {"U.P." : 'Lucknow', "Bihar" : 'Patna', "Karnataka" : 'Bangalore', "Maharastra" : 'Mumbai'}
+
+<mark># 1. Clear method => Removes all the elements from the dictionary </mark>
+
+'''print(Dict1)
+Dict1.clear()
+print(Dict1)'''
+
+<mark># 2. Copy Method => Returns a copy of the dictionary </mark>
+
+'''print(Dict1)
+x = Dict1.copy()
+print(x)'''
+
+<mark># 3. Fromkeys => Returns a dictionary with the specified keys and value </mark>
+
+'''a = ('x', 'y', 'z')
+b = 0
+
+Dict2 = dict.fromkeys(a,b)
+print(Dict2)'''
+
+<mark># 4. Get => Returns the value of the specified key </mark>
+
+'''x = Dict1.get('Bihar')
+print(x)
+
+### It's return the value of an item that do not exist
+
+y = Dict1.get('Delhi')
+print(y)
+
+z = Dict1.get('Goa', 'Panji')
+print(z)'''
+
+<mark># 5. Items => Returns a list containing a tuple for each key value pair </mark>
+
+'''x = Dict1.items()
+print(x)'''
+
+<mark># 6. Keys => Returns a list containing the dictionary's keys </mark>
+
+'''x = Dict1.keys()
+print(x)'''
+
+<mark># 7. Pop => Removes the element with the specified key </mark>
+
+'''Dict1.pop("Bihar")
+print(Dict1)'''
+
+###  The value of the removed item is the return value of the pop() method:
+
+'''x = Dict1.pop("Bihar")
+print(x)'''
+
+<mark># 8. popitem()	=> Removes the last inserted key-value pair </mark>
+
+'''Dict1.popitem()
+print(Dict1)'''
+
+###  The removed item is the return value of the pop() method::
+
+'''x = Dict1.popitem()
+print(x)'''
+
+<mark># 9. setdefault() => Returns the value of the specified key. If the key does not exist: insert the key, with the specified value </mark>
+
+'''x = Dict1.setdefault("U.P.")
+print(x)'''
+
+### Get the value of the key item, if the key item does not exist, insert key with the value "some value":
+'''x = Dict1.setdefault("T.N.", "Chennai")
+print(x)'''
+
+<mark># 10. update()	=> Updates the dictionary with the specified key-value pairs </mark>
+'''print(Dict1)
+Dict1.update({"T.N.": "Chennai"})
+print(Dict1)'''
+
+<mark># 11. values()	=> Returns a list of all the values in the dictionary </mark>
+
+print(Dict1.values())
+
+	</h3></pre></html>

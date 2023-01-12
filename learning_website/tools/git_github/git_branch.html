@@ -1,0 +1,77 @@
+<html><h2><u>Git Branch</u></h2>
+<h4><pre>
+1. A branch is a version of the repository that diverges from the main working project. 
+2. It is a feature available in most modern version control systems. 
+3. A Git project can have more than one branch. 
+4. These branches are pointer to a snapshot of your changes.
+5. When you want to add a new feature or fix a bug, you spawn a new branch to summarize your changes. 
+<mark>So, it is complex to merge the unstable code with the main code base and also facilitates you to clean up your future history before merging with the main branch.</mark>
+
+<img src="picture/branch.JPG" alt="HTML5 Icon" style="width:450px;height:250px;">
+
+<h3><u>Git Master Branch</u></h3>
+The master branch is a default branch in Git. <u>It is instantiated when first commit made on the project.</u> When you make the first commit, you're given a master
+branch to the starting commit point. When you start making a commit, then master branch pointer automatically moves forward. A repository can have only one master
+branch.
+<mark>Master branch is the branch in which all the changes eventually get merged back. It can be called as an official working verison of your project.</mark>
+
+<h3><u>Some points to remember:-</u></h3>
+1. Each task has one separate Branch.
+2. After done with the code, merge other branches with master.
+3. This concept is useful for parallel development.
+4. You can create any number of branches.
+5. <mark>Changes are personal to that particular branch.</mark>
+6. Default Branch is master.
+7. <mark>Files created in workspace will be visible in any of the branch workspace untill you commit. Once you commit, then that files belongs to that particular branch.</mark>
+8. When created new Branch, data of the existing branch will be copied to new branch.
+
+<h3><u>Operations on Branches:-</u></h3>
+
+<u>To create Branch - </u>
+Example -> $ git branch branch_name
+
+<u>To List Branch - </u>
+Example -> $ git branch --list or $ git branch
+
+<u>To delete Branch - </u>
+It is a safe operation. In this command, git prevents you from deleting the branch if it has unmerged changes.
+
+Example -> $ git branch -d branch_name
+
+<mark>Note: The git branch d comamnd can be used in two formats. Another format of this command is git branch D.</mark>
+
+<mark>$ git branch -D branch_name </mark> 
+
+<u>Delete a Remote Branch -</u>
+
+You can delete a remote(GitHub) branch from Git desktop application. Below command is used to delete a remote branch.
+
+Example -> $ git push origin -delete branch_name 
+
+<u>To switch Branch - </u>
+Git allows you to switch between the branches without making a commit.
+
+Example -> $ git checkout branch_name
+
+<u>Switch from master Branch -</u>
+
+You can switch from master to any other branch available on your repository without making any commit.
+
+Example -> $ git checkout branch_name 
+
+<u>Switch to master branch -</u>
+
+You can switch to the master branch from any other branch with the help of below command.
+
+git branch -m master
+
+<u>To rename Branch - </u>
+<mark> $ git branch -m old-branch-name new_branch-name</mark>
+
+<u>Merge Branch -</u>
+
+Git allows you to merge the other branch with the currently active branch. You can merge two branches with the help of git merge command.
+
+$ git merge branch_name
+
+</pre></h4></html>

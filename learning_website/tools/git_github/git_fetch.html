@@ -1,0 +1,48 @@
+<html><h2><u><center>Git Fetch</center></u>
+<h4><pre>
+1. The "git fetch" command is used to fetch the updates from remote-tracking branches. 
+2. It downloads commits, objects and refs from another repository. It also fetches branches and tags from one or more repositories.
+3. Additionally, we can get the updates that have been pushed to our remote branches to our local machine.
+4. As we know, a branch is a variation of our repositories main code, so the <mark>remote-tracking branches are the branches that have been set up to pull and push from remote 
+   repository.</mark>
+
+<h3><u>Ways to fetch Git Repository-</u></h3>
+<u>Scenario 1. To Fetch the remote repository:-</u>
+We can fetch the complete repository with the help of fetch command from a repository URL like a pull command does.
+
+<mark>Example -> git fetch repository_URL</mark>
+
+<u>Scenario 2. To fetch a specific branch:-</u>
+We can fetch a specific branch from a repository. It will only access the element from a specific branch. 
+
+<mark>Example -> git fetch branch_url branch_name</mark>
+
+<u>Scenario 3. To fetch all the branches simultaneously:-</u>
+The git fetch command allows to fetch all branchs simultaneously from a remote repository.
+
+<mark>Example -> git fetch -all</mark> 
+
+<u>Scenario 4. To synchronize the local repository:-</u>
+Suppose, your team member has added some new features to your remote repository. So, to add these updates to your local repository, use the git fetch command. It is used as 
+follow.
+
+<mark>Example -> git fetch origin</mark>
+
+Note:
+1. The git fetch can fetch from either a single named repository or URL or from several repositories at once.
+2. It can be considered as the safe version of the git pull commands.
+3. The git fetch downloads the remote content but not update your local repo's working state.
+4. When no remote server is specified, by default, it will fetch the origin remote. 
+
+
+Some command after git fetch
+
+git checkout origin/master -> after fetching you can view the changes made in remote 
+git log -> check through git log
+git diff master origin/master
+git diff master origin/master --stat
+git log master..origin/master
+git log origin/master..master
+
+ </pre></h4>
+</h2></html>

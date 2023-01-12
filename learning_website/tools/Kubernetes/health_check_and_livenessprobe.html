@@ -1,0 +1,41 @@
+<html><u><center><h2>Health Check and LivenessProbe</h2></center></u>
+<pre><h4>
+-> A pod is considered ready when all of its containers are ready.
+-> In order to verify if a container in Pod is Healthy and ready to serve traffic, Kubernetes provides for a range of healthy checking mechanism.
+-> Health Checks or probes are carried out by the Kublet to determine when to recreate a container (For liveness probe) and used by services and deployments to 
+   determine if a pod should receive traffic.
+-> For eg - Liveness Probes could catch a deadlock, where an application is running, but unable to make progress. Restarting a container in such as state can 
+   help to make the application more available despite bugs.
+-> One use of readiness probes is to control which pods are used as backends for services when a pod is not ready, it is removed from service load balancers.
+-> For running health checks, we would use cmds specific to the application.
+-> If the cmd succeeds and it returns 0, the kublet considers the container to be alive and healthy.
+-> If the command returns a non-zero value, the kublet kill the pods and recreate it.   
+
+==========================================================================================================================
+HEALTHCHECK/LIVENESSPROBE
+==========================================================================================================================
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: liveness
+  name: mylivenessprobe
+spec:
+  containers:
+  - name: liveness
+    image: ubuntu
+    args:
+    - /bin/sh
+    - -c
+    - touch /tmp/healthy; sleep 1000
+    livenessProbe:                                          
+      exec:
+        command:                                         
+        - cat                
+        - /tmp/healthy
+      initialDelaySeconds: 5          
+      periodSeconds: 5                                 
+      timeoutSeconds: 30 
+
+</pre></h4>
+</html>

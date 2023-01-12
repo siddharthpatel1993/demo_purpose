@@ -1,0 +1,53 @@
+<html><h3><u>Playbooks</u></h3>
+<h4><pre>
+=> Playbook in ansible is written written in YAML format.
+
+=> It is human readable data serialization language. It is commonly used for configuration files.
+
+=> Playbook is like a file where you can write codes. It consist of Variables, tasks, files, templates and roles.
+
+=> Each Playbook is composed of one or more 'modules' in a list. Module is a collection of configuration files.
+
+=> Playbooks are divided in many sections like - 
+Target section -> Defines the host against which playbooks task has to be executed.
+Variable Section -> Defines Variables
+Task Section -> List of all the modules that we need to run in an order.   
+
+<u>YAML (Yet Another Markup Language)</u>
+
+=> For ansible, nearly every YAML files starts with a list.
+
+=> Each item in a list is a list of key-value pairs, commonly called a Dictionary.
+
+=> All YAML files can begin with "---" and ends with "...", but not mandetory.
+
+=> All members of a list lines must begin with same identation level starting with "-". 
+
+For eg :-  
+--- # A list of fruits
+Fruits:
+ - Mango
+ - Strawberry
+ - Banana
+ - Grapes
+ - Apple
+ 
+ => A Dictionary is represented in a simple key: value form.
+ 
+ For eg. 
+ --- #Details of an employee
+ Employee:
+  name: Siddharth
+  Company: Ericsson
+  Skills: Ansible
+  Experience: 5 years
+
+Note:- There should be space between : and value.
+
+<u>DRYRUN</u>
+
+Check whether the playbook is formatted correctly.
+
+ansible-playbook [playbook_name.yml] --check
+
+</h4></pre></html>

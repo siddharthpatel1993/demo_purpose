@@ -1,0 +1,78 @@
+<html><h2><u>Git Stashing</u></h2>
+<h4><pre>
+Suppose you are implementing a new feature for you product. Your code is in progress and suddenly a customer escalation comes. Because of this, you have
+to keep aside your new feature work for few hours.
+You cannot commit your partial code and also cannot throw away your changes. So you need some temporary storage, where you can store you partial changes
+and later on commit it.
+
+Sometimes you want to switch the branches, but you are working on an incomplete part of your current project. You don't want to make a commit of half-done work.
+Git stashing allows you to do so. The git stash command enables you to switch branches without committing the current branch.
+
+-> <mark>To stash an item (only applies to modified files, not new files).</mark>
+
+Stashing takes the messy state of your working directory, and temporarily save it for furthur use. Many options are available with git stash.
+Some useful options are below.
+
+a. Git stash
+b. Git stash save
+c. Git stash list
+d. Git stash apply
+e. Git stash changes
+f. Git stash pop
+g. Git stash drop
+h. git stash clear
+i. git stash branch
+
+
+<h3><u>a. To stash an item -</u></h3>
+$ git stash
+
+<h3><u>b. Git stash save (Saving stashes with the message) -</u></h3>
+$ git stash save "stashing message"
+
+<h3><u>c. Git stash list (check the stored stash) -</u></h3>
+$ git stash list
+
+<h3><u>d. Git Stash Apply -</u></h3>
+You can re-apply the changes that you just stashed by using the git stash command.
+$ git stash apply stash_id
+
+<mark>If we don't specify a stash, Git takes the most recent stash and tries to apply it.</mark>
+
+<h3><u>e. Git Stash Changes -</u></h3>
+We can track the stashes and their changes. To see the changes in the file before stash and after stash operation, run the below command.
+$ git stash show
+
+<mark>Note: We can exactly track what changes are made on the file. To display the changed content of the file, perform the below command:</mark>
+$ git stash show -p
+
+-p stands for partial stash. 
+
+<mark>Note: The above command will acts the same as git diff command. The git diff command will also show the exact output.</mark> 
+
+<h3><u>f. Git Stash Pop (Reapplying Stashed Changes)-</u></h3>
+Git allows the user to re-apply the previous commits by using git stash pop command. The popping option removes the changes from stash and applies
+them to your working file.
+$ git stash pop
+
+<mark>Note: The git stash pop command is quite similar to git stash apply. The main difference between both of these commands is stash pop command
+that deletes the stash from the stack after it is applied.</mark>   
+
+<h3><u>g. Git Stash Drop (Unstash)-</u></h3>
+The git stash drop command is used to delete a stash from the queue. Generally, it deletes the most recent stash. Caution should be taken before using
+stash drop command, as it is diffcult to undo if once applied.
+The only way to revert it is if you do not close the terminal after deleting the stash. 
+$ git stash drop
+
+If you want to pop not the recent one, then
+$ git stash drop stash_id 
+
+
+<h3><u>h. Git stash clear -</u></h3>
+The git stash clear command allows deleting all the available stashes at once. 
+$ git stash clear
+
+<h3><u>i. Git stash branch -</u></h3>
+The git stash branch command allows the user to stash work on separate branch to avoid conflicts. 
+$ git stash branch Branch_Name
+</pre></h4></html>

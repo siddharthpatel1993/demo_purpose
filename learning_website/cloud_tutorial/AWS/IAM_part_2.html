@@ -1,0 +1,85 @@
+<html><h2><u><center>Identity Federation</center></u></h2>
+<h4><pre>
+-> If your account users already have a way to be authenticated such as authentication through your corporate network.
+-> You can federate those user identities into AWS.
+-> A user who has already logged to the corporate using their corporate Identity.
+-> The corporate can replace their existing identity with a temporary identity in your AWS account.
+-> This user can work in the AWS management console.
+-> Similarly, an application that the user is working with can make programmatic request using permissions that you define. 
+
+<h3><u>Federation is particularly useful in these cases -</u></h3>
+1. Your users already have identities in a corporate directory.
+-> If your corporate directory is compatible with Security Assertion Markup Language (SAML 2.0)
+-> You can configure your corporate directory to provide single sign-on (SSO) access to the AWS Management console for your users.
+-> If your corporate directory is not compatible with SAML 2.0
+-> You can create Identity Broker application to provide single sign-on (SSO) access to the AWS management console for your users.
+-> If your corporate directory is Microsoft Active Directory, you can use AWS Directory Service to establish trust between your corporate directory and your AWS account.
+
+2. Your users already have internet identities
+-> If you are creating a mobile app or web-based app that can let users identity themselves through an Internet Identity Provider like login with Amazon, Facebook, Google or 
+   any Open ID Connect (OIDC) compatible identity provider, the app can use Web Federation to access AWS.
+
+-> AWS recommends to use AWS Cognito for Identity Federation.
+
+Note:
+-> SAML => Corporate, OpenID Connect => Web Federation
+
+<h3><u>IAM Users and SSO</u></h3>
+-> IAM users in your account have access only to the AWS resources that you specify in the policy that is attached to the user or to an IAM group that the user belongs to.
+-> To work in the console, user must have permissions to perform the actions that the console performs, such as listing and creating AWS resources. 
+
+<h3><u>IAM Identities</u></h3>
+1. User
+2. Groups
+3. Roles
+
+-> IAM identities is what you create under your AWS account to provide authentication for people, application and processes in your AWS account.
+-> Identities represent the user and can be authenticated and then authorized to perform actions in AWS.
+-> Each of these can be associated with one or more policies to determine what actions a user, role or member of a group can do with which resources and user what conditions.
+-> IAM group is a collection f users.
+-> IAM role is very similar to IAM user.
+
+<u>1. User</u>
+-> An IAM user is an entity that you create in AWS. It represents the person or service who uses the IAM user to interact with AWS.
+-> You can create 5 users at a time.
+-> An IAM user can represent an actual person or an application that requires AWS access to perform actions on AWS resources.
+-> A primary use of IAM users is to give people the ability to sign-in to the AWS management console for interactive task and to make programmatic request to AWS services 
+   using the API or CLI. 
+   
+ For any user, you can assign them -
+-> A username and password to access the AWS console.
+-> An access key ID and secret key that they can use for programmatic access.
+-> The newly created IAM users have no password and no access key. You need to create the user password.
+-> Each IAM user is associated with one and only one AWS account.
+-> Users are defined within your account, so users do not have to do the payment. Bill would be pay by the parent account. 
+
+<u>2. IAM Groups</u>
+-> An IAM group is collection of IAM users.
+-> It is a way to assign permission/policies to multiple users at once.
+-> Use Groups to specify permissions for a collection of users, which can make those permissions easier to manage for those users.
+-> For eg - you could have a group called HR and give that Group the types of permissions that HR department typically needs.
+-> Any user in that group automatically has the permission that are assigned to the group.
+-> If a new user joins your organization and should have HR privileged, you can assign the appropriate permissions by adding the user to that group.
+-> If a person changes job in your organization, instead of editing that user's permission, you can remove him or her from the old groups and add him or her to the 
+   appropriate new groups.
+
+IAM Group Limitations 
+-> A group is not truly an 'identity' is IAM because it cannot be indented as a principal in a permission policy.
+-> Groups can't be nested.
+-> You have a limit of 300 groups in an AWS account.
+-> A user can be a member of upto 10 IAM groups.
+
+<u>3. Roles</u>
+-> An IAM role is very similar to a user, in that it is an identity with permission policies that determine what the identity can and cannot do in AWS.
+-> An IAM role does not have any credentials (password and access key) associated with it.
+-> Instead of being uniquely associated with one person, a role is intended to be assumable by anyone who needs it.
+-> An IAM user can assume a role to temporarily take on different permissions for a specific task.
+-> An IAM role can be assigned to a federated user who signs-in by using an external identity provider instead of IAM.    
+
+<h3><u>IAM Temporary Credentials</u></h3>
+-> Temporary credentials are primarily used with IAM roles, but there are also other users.
+-> You can request temporary credentials that have a more restricted set of permissions than your standard IAM users.
+-> This prevent you from accidentally performing task that are not permitted by the more restricted credentials.
+-> A benefit of temporary credentials is that they expire automatically after set period of time.
+</h4>
+</pre></html>

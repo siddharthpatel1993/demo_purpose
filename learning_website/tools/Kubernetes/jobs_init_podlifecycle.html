@@ -1,0 +1,139 @@
+<html><u><center><h2>Jobs, init container and Pod Life cycle</h2></center></u>
+<pre><h4>
+-> We have replicasets, Daemonsets, statefulsets and deployments they all share one common property: they ensure that their pods are always running.
+-> If a pod fails, the controller restarts it or reschedules it to another node to make sure the application the pod is hosting keeps running.
+
+Use cases:
+1. Take backup of DB
+2. Helm charts uses jobs
+3. Running Batch processes
+4. Run a task at a schedule internal
+5. Log rotation  
+
+===========Job=====================================
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: testjob
+spec:
+  template:
+    metadata:
+      name: testjob
+    spec:
+      containers:
+      - name: counter
+        image: centos:7
+        command: ["bin/bash", "-c", "echo Technical-Guftgu; sleep 5"]
+      restartPolicy: Never
+
+kubectl apply -f job.yml
+watch !! or watch kubectl get pods
+Job does not get deleted by itself, we have to delete it.
+kubectl delete -f job.yml
+
+--------------
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: testjob
+spec:
+  parallelism: 5                           # Runs for pods in parallel
+  activeDeadlineSeconds: 10  # Timesout after 30 sec
+  template:
+    metadata:
+      name: testjob
+    spec:
+      containers:
+      - name: counter
+        image: centos:7
+        command: ["bin/bash", "-c", "echo Technical-Guftgu; sleep 20"]
+      restartPolicy: Never
+	  
+kubectl apply -f job2.yml
+-------------
+
+The CronJob Pattern
+
+-> If we have multiple nodes hosting the application for high availability, which nodes handles cron?
+-> What happens if multiple identical jobs run simultaneously? 
+
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+ name: bhupi
+spec:
+ schedule: "* * * * *"
+ jobTemplate:
+   spec:
+     template:
+       spec:
+         containers:
+         - image: ubuntu
+           name: bhupi
+           command: ["/bin/bash", "-c", "echo Technical-Guftgu; sleep 5"]
+         restartPolicy: Never
+
+watch kubectl get pods
+=================
+
+Init Containers
+
+-> Init containers are specialized containers that run before app containers in a pod.
+-> Init containers always run to completion.
+-> If a pod's init container fails, Kubernetes repeatedly restarts the pod until the init container succeeds.
+-> Init container do not support readiness probe.
+
+Use Cases
+-> Seeding a database.
+-> Delaying the application launch until the dependencies are ready.
+-> Clone a git repository into a volume.
+-> Generate configuration file dynamically.
+
+For init container check the video.
+
+Pod Life Cycle
+
+Pending -> Running -> Succeeded -> Failed -> Completed -> Unknown
+
+-> The phase of a pod is a simple, high-level summary of where the pod is in its lifecycle.
+
+Pending 
+-> The pod has been accepted by the k8s system, but its not running.
+-> One or more of the container images is still downloading.
+-> If the pod cannot be scheduled because of resource constraints.
+
+Running
+-> The pod has been bound to a node.
+-> All of the containers have been created.
+-> Atleast one container is still running or is in the process of starting or restarting.
+
+Succeeded
+-> All containers in the pod have terminated in success, and will not be restarted.
+
+Failed
+-> All containers in the pod have terminated and atleast one container has terminated in failure.
+-> The container either exited with non-zero status or was terminated by the system. 
+
+Completed
+-> The pod has run to completion as there is noting to keep it running.
+eg - Completed jobs
+
+Unknown
+-> State of the pod could not be obtained.
+-> Typically due to an error in network or communicating with the host of the pod. 
+
+Pod Conditions
+
+-> A pod has a pod status, which has an array of pod conditions through which the pod has or has not passed.
+-> Using 'kubectl describe pod PODNAME' you can get condition of a pod.
+
+These are the possible types -
+PodSecheduled :- The pod has been scheduled to a node.
+Ready :- The pod is able to serve request and will be added to the load balancing pools of all matching services.
+Initialized :- All init containers have started successfully. 
+Unscheduled :- The scheduler cannot schedule the pod right now, for eg - due to lacking of resources or other constraints.
+ContainerReady :- All containers in the pod are ready.  
+     
+
+</pre></h4>
+</html>

@@ -1,0 +1,55 @@
+<html><h2><u>Git Commit</u></h2>
+<h4><pre>
+It is used to record the changes in the repository. It is the next command after the git add. Every commit contains the index data and the commit message. Every commit forms a 
+parent-child relationship. When we add a file in Git, it will take place in the staging area. A commit command is used to fetch updates from the staging area to the repository.
+
+The staging and committing are co-related to each other. Staging allows us to continue in making changes to the repository, and when we want to share these changes to the 
+version control system, committing allows us to record these changes.
+
+Commits are the snapshots of the project. Every commit is recorded in the master branch of the repository. <mark>We can recall the commits or revert it to the older version. 
+Two different commits will never overwrite because each commit has its own commit-id. This commit-id is a cryptographic number created by SHA (Secure Hash Algorithm) 
+algorithm. </mark>
+
+Let's see the different kinds of commits.
+
+<u><h3>The git commit command - </u></h3>
+The commit command will commit the changes and generate a commit-id. The commit command without any argument will open the default text editor and ask for the commit message. 
+We can specify our commit message in this text editor. It will run as follows:
+
+<mark>$ git commit </mark> 
+The above command will prompt a default editor and ask for a commit message. If we have made a change to file and want it to commit it. It can be done as follows:
+
+<mark> Git Commit </mark>
+As we run the command, it will prompt a default text editor and ask for a commit message. Press the Esc key and after that 'I' for insert mode. Type a commit message whatever 
+you want. Press Esc after that ':wq' to save and exit from the editor. Hence, we have successfully made a commit.
+
+We can check the commit by git log command (git log)
+
+<u><h3>Git commit - </u></h3>
+The commit command also provides -a option to specify some commits. It is used to commit the snapshots of all changes. This option only consider already added files in Git. 
+It will not commit the newly created files. 
+
+<mark> $ git commit -a </mark>  
+
+The above command will prompt our default text editor and ask for the commit message. Type a commit message, and then save and exit from the editor. This process will only 
+commit the already added files. It will not commit the files that have not been staged.
+
+Git commit -m
+The -m option of commit command lets you to write the commit message on the command line. This command will not prompt the text editor. It will run as follows:
+
+<mark>$ git commit -m "Commit message." </mark>  
+The above command will make a commit with the given commit message. 
+
+We can also use the -am option for already staged files. This command will immediately make a commit for already staged files with a commit message. It will run as follows:
+
+<mark>$ git commit -am "Commit message." </mark> 
+
+<u><h3>Git Commit Amend (Change commit message) - </u></h3>
+<mark>The amend option lets us to edit the last commit. If accidentally, we have committed a wrong commit message, then this feature is a savage option for us. It will run 
+as follows:
+
+ $ git commit --amend </mark>  
+The above command will prompt the default text editor and allow us to edit the commit message.
+
+
+</pre></h4></html>

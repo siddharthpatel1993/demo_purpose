@@ -1,0 +1,71 @@
+<html><h2><u><center>AWS Route53 Part -2 </center></u></h2>
+<h4><pre> 
+If you are currently using another DNS service and you want to migrate to Amazon Route53
+-> Start by creating a hosted zone.
+-> Route53 automatically assigns the delegation sets, the four name servers to your hosted zone.
+-> To ensure that the DNS routes queries for your domain to the Route53 name servers.
+   - Update your registrar's or your DNS service's NS records for the domain to replace the current Name Servers with the names of the four Route53 name servers for your 
+     hosted zone.
+   - The method that you use to update the NS records depends on which registrar or DNS service you are using.
+-> Some registrar only allow you to specify name servers using IP addresses, they don't allow you to specify fully qualified domain names.
+-> If your registrar requires IP address, you can get the IP address for your name servers using the dig utility (for mac, linux) and nslookup (for windows).
+
+<h3><u>Transferring a domain between accounts within AWS</h3></u>  
+-> Transferring a domain to a different AWS account
+   - If you registered a domain using one AWS account and you want to transfer the domain to another AWS account, you can do so by contacting the AWS support center and 
+     requesting the transfer.  
+
+<h3><u>Migrating a hosted zone to a different AWS account</h3></u>  
+-> If you using route53 as the DNS service for the domain, route53 does not transfer the hosted zone when you transfer a domain to a different AWS account.
+-> If domain registration is associated with one account and the corresponding hosted zone is associated with another account, neither domain registration nor DNS 
+   functionality is affected.
+-> The only effect is that you will need to sign into the route53 console using one account to see the domain, and sign-in using the other account to see the hosted zone.  
+
+<h3><u>Supported DNS Records types by Route53</u></h3>
+1. A Record(Address Record)
+-> Maps domain name to IP address.
+-> www.facebook.com IN A 5.5.5.5
+
+2. AAAA Record (IPv6 address Record)
+-> Maps domain name to IPv6 address.
+-> www.facebook.com IN AAAA 2002:b768::1
+
+3. CNAME Record(Canonical Name Record)
+-> Maps an alias to a hostname
+-> web IN CNAME www.facebook.com
+
+4. NS Record(Name Server Record)
+-> Used for delegating zone to a name server
+-> facebook.com IN NS nsi.facebook.com 
+
+5. SOA Record(Start of Authority Record)
+-> It basically tells you who is the owner of the particular domain.
+-> It tells us actual domain of the mail exchange server.  
+
+6. MX Record(Mail Exchange)
+-> It defines where to deliver the mail for user@ a domain name
+-> facebook.com IN MX 10 mail01.facebook.com
+
+-> NS Records defines which name server is a authoritative to a particular zone or domain name and point you to other DNS servers.
+-> A/AAAA are called host records, like business cards.
+-> CNAME is an alternative record or an alias for another record.
+-> Helpful in redirection or if you want to hide details about your actual servers from the users.
+
+<h3><u>Start of Authority Record(SOA Record)</u></h3>
+-> Every single zone has one and only one SOA resource record at the beginning of the zone.
+-> It is not an actual record, it includes the following -
+   - Who the owner is (email for the domain)
+   - The authoritative server
+   - The serial number which is incremented with changes to the zone data.
+   - The refreshing time/cycle info, and the TTL.  
+
+<h3><u>CNAME Record Type</u></h3>
+-> A CNAME value element is the same format as a domain name.
+-> The DNS protocol does not allow you to create a CNAME record for the top node of a DNS namespace, also knows as the zone apex (or root domain).
+-> For example, if you register the DNS name facebook.com, the zone apex is facebook.com
+-> You cannot create a CNAME record of facebook.com
+-> However you can create CNAME records for www.facebook.com, support.facebook.com and so on.
+-> In addition, if you create a CNAME record for a subdomain, you cannot create other records for that subdomain.
+-> For example - if you create a CNAME for www.facebook.com, you cannot create any other records for which the value of the name field is www.facebook.com    
+</h4>
+</pre></html>

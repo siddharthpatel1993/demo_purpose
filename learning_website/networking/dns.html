@@ -1,0 +1,53 @@
+<html><h2><u><center>Domain Name System(DNS)</center></u></h2>
+<h4><pre> 
+-> DNS is a host name to IP address translation service.
+-> It is an Application Layer Protocol.
+-> Previously, all the host names were saved in the host.txt file.
+-> 6 top level domains included - .com, .org, .biz, .mil, .net and .edu
+-> Forward and reverse DNS lookups.
+-> Highly targeted for hacking purpose.
+-> It used TCP port 53 and UDP port 53.
+-> Today, DNS support 13 root name server (A to M).
+
+Note: There are two ways to resolve hostname to IP address. The first is by building a host table on each router, and the second is to build a DNS server.  
+
+<h3><u>Three types of Domain</u></h3>
+1. Generic (.com, .edu, .org, .mil)
+2. Country (.us, .uk, .in)
+3. Inverse (IP to domain Name mapping)
+
+-> A namespace map each address to a unique name.
+-> Namespace is of two types - Flat, Hierarchical
+-> Flat namespace - 
+   - In this method, name is assigned to an address.
+   - It is in sequence of character without any structure.
+   - It can't be used in larger system.
+-> Hierarchical Namespace
+   - In this, name is made of several paths.
+   - In this method, name space can be decentralized.
+
+<h3><u>Hierarchy of Name Servers</u></h3>   
+<u>Root Name Sever</u>
+-> It is contacted by Name servers that cannot resolve the name.
+-> It contacts Authoritative Name servers via top level if name mapping is not known.
+-> It then gets the mapping and return the IP address to the host.
+
+<u>Top Level Server</u> 
+-> It is responsible for .com, .org, .edu and all top level country domain like uk, fr, ca, in etc.
+-> They have information about Authoritative Domain Servers and know the IP addresses of each Authoritative Name server for the second level domains.
+
+<u>Authoritative Server</u>
+-> It can be maintained by organization or service provider. 
+-> In order to reach ccna.tg.in we have to ask the root DNS server, then it will print out to the top level domain server and then to authoritative domain name server which 
+   actually contains the IP address.
+-> So, the Authoritative Server will return the associative IP address.  
+
+<u>Fully Qualified Domain Name</u>
+-> In this a label is terminated by Null string. (eg - xyz.google.co.in.)
+-> It contains full name of a host.
+
+<u>Partially Qualified Domain Name</u>
+-> In this a label is not terminated by null string. (eg - xyz.google.co.in)
+-> PQDN start from node but does not reach root. 
+</h4>
+</pre></html>

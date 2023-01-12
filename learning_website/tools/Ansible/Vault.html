@@ -1,0 +1,20 @@
+<html><h3><u>Vault</u></h3>
+<h4><pre>
+Ansible allows keeping sensitive data such as passwords or keys in encrypted files, rather than a plain text in your playbooks.
+
+=> Creating a new encrypted playbook
+   <mark>ansible-vault create vault.yml</mark>
+
+=> Edit the encrypted playbook
+   <mark>ansible-vault edit vault.yml</mark>
+   
+=> To change the password
+   <mark>ansible-vault rekey vault.yml</mark>
+   
+=> To encrypt an exiting playbook
+   <mark>ansible-vault encrypt target.yml</mark>
+   
+=> To decrypt an encrypted playbook
+   <mark>ansible-vault decrypt target.yml</mark>
+</pre></h4>
+</html>

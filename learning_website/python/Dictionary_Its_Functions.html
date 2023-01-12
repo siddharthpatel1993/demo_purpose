@@ -1,0 +1,61 @@
+<html><h2><u><center>Dictionary & Its Functions Explained</center></u></h2>
+
+<h4><pre>Let's start with the basic definition of a Python Dictionary:
+
+<mark>“A dictionary is a collection which is unordered, changeable and does not allow duplicates. Each item of the dictionary has a key/value pair.” </mark>
+
+Here are a few important features of a python dictionary:
+
+•	It is unordered (no sequence is required - data or entries have no order, because there is no indexing through number. Happening view key)
+•	It is mutable (values can be changed even after its formation or new data/information can be added to the already existing dictionary, we can also pop/remove an entry 
+        completely)
+•	<mark>It is indexed (Dictionary contains key-value pairs and indexing is done with keys. Also, after the Python 3.7th update the compiler stores the entries in the order 
+        they are created)</mark>
+•	No duplication of data (each key is unique; no two keys can have the same name so there is no chance for a data override)
+
+Let's look into the syntax of a Python dictionary
+
+a = {'key':'value', 'cow':'mooh'}
+print(a['cow'])
+#will print "mooh" on the screen
+
+
+Some distinct features that a dictionary provides are:
+
+•	We can store heterogeneous data into our dictionary i.e. numbers, strings, tuples, and the other objects can be stored in the same dictionary.
+•	<mark>Different data types can be used in a single list, which can be made the value of some key in the dictionary. etc. </mark>
+
+<u>Dictionary Methods - </u>
+1. Clear
+2. Copy
+3. Fromkeys
+4. Get
+5. Items
+6. Keys
+7. Pop
+8. Popitem
+9. Setdefault
+10. Update
+11. Values
+
+<p class="w3-medium"><a href="programs/dict_methods.html" target="_blank">Click here for example of Dictionary methods</a></p>
+
+Program:
+
+# Dictionary is nothing but key value pairs
+d1 = {}
+# print(type(d1))
+d2 = {"Harry":"Burger",
+      "Rohan":"Fish",
+      "SkillF":"Roti",
+      "Shubham":{"B":"maggie", "L":"roti", "D":"Chicken"}}
+# d2["Ankit"] = "Junk Food"
+# d2[420] = "Kebabs"
+# print(d2)
+# del d2[420]
+# print(d2["Shubham"])
+# d3 = d2.copy()
+# del d3["Harry"]
+# d2.update({"Leena":"Toffee"})
+# print(d2.keys())
+</pre></h4></html>

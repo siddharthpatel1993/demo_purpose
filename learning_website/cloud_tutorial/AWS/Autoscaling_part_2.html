@@ -1,0 +1,57 @@
+<html><h2><u><center>AutoScaling</center></u></h2>
+<h4><pre>
+-> In four situation, ASG sends a SNS email notification -
+1. An instance in launched
+2. An instance is terminated
+3. An instance is fails to launch
+4. An instance fails to terminate
+
+<h3><u>Merging AutoScaling Group</u></h3>
+-> Can only be done from the CLI (not AWS console)
+-> You can merge single, multiple AZ AutoScaling Group into a single, Multi-AZ autoscaling Group.
+
+-> Scale-out means launching more EC2 instances.
+-> Scale-in means terminating one or more EC2 instances by scaling policy.
+-> It is always recommended to create a scale-in event for each scale-out event you create.
+-> Launch configuration cannot be edited, it can only be copied or deleted.
+-> AWS EC2 services send EC2 metrics to cloudwatch about the ASG instances.
+   - Basic Monitoring (Every 300 secs enabled by default and free of cost)
+   - You can enable detailed monitoring(every 60 secs - chargeable)
+-> When the launch configuration is done by AWS CLI, detailed monitoring for EC2 instances is enabled by default.
+-> When the launch configuration is done by AWS console, basic monitoring for EC2 instances is enabled by default.
+
+<h3><u>Standby State</u></h3>
+-> You can manually move an instance from ASG and put it in standby state.
+-> Instances in standby state are still managed by AutoScaling.
+-> Instances in standby state are charged as normal, in-service instances.
+-> They do not count towards available EC2 instances for workload/APP use.
+-> AutoScaling does not perform health check on instances in standby state.
+
+<h3><u>Auto-Scaling Policy</u></h3>
+-> There are two types of Scaling Policy - Manual, Dynamic
+-> There are three types of Dynamic Scaling - Target Tracking Policy, Simple Scaling Policy, Step Scaling Policy.
+-> Define how much you want to scale based on defined conditions.
+-> AutoScaling group uses alarms and policies to determine scaling.
+-> For simple or step scaling, a scaling adjustment can't change the capacity of the group above the max. group size or below the min. group size.
+
+Predictive Scaling/ Schedule Scaling/ Cyclic Scaling -> It looks at historic pattern and forcast them into the future to schedule change in the no. Of EC2 instances. It 
+                                                        uses in Machine Learning model to forecast daily and weekly pattern.
+
+Target Tracking Policies - Increase or decrease the current capacity of the group based on the target value for a specific metric. This is similar to the way that your 
+                           thermostat maintain the temperature of your home.  
+
+Step Scaling -> Increase or decrease the current capacity  of the Group based on a set of scaling adjustment, known as step adjustment, that vary based on the size of the 
+                alarm breach.
+             -> Does not support/ wait for a cool-down timer.
+             -> Support a warm-up timer. Time taken by newly launch instance to be ready and contribute to the watched metric.
+
+Simple Scaling -> Single adjustment (up or down) in response to an alarm (cool down timer - 300 sec default). 
+
+Schedule Scaling
+-> Use for predictable load change
+-> You need to configure a schedule action for a scale out at specific date/time and to a required capacity.
+-> A schedule action must have a unique data/time. You cannot config two schedule activities at the same time/date.
+
+What is cool-down period and warm-up period?
+</h4>
+</pre></html>

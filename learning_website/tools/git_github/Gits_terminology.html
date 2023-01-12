@@ -1,0 +1,100 @@
+<html><h2><u><center>Git Terminology</center></u></h2>
+<pre><h4>
+
+<h3><u>Git:-</u></h3>
+-> Git is open-source distributed version control system which is available for everyone at zero cost. 
+-> It is desinged to handle minor to major projects with speed and efficiency.
+-> It is developed to co-ordinate the work among programmers.
+-> The version control allows you to track and work together with your team member at the same workspace.
+
+<h3><u>GitHub:-</u></h3>
+-> GitHub is a Git repository hosting service.
+-> GitHub also facilitates with many of its features, such as access control and collaboration.
+-> It is web based graphical service.
+-> GitHub facilitates with all of the features of distributed version control and source code management (SCM) functionality of Git.
+-> It also facilitates with some collboration features such as bug tracking, feature requests, task management for every project.
+
+<h3><u>Repository:-</u></h3>
+-> Repository is a place where you have all your codes or kind of folder on server.
+-> The repository is like a data structure used by VCS to store metadata for set of files and directories.
+-> It contains the collection of files as well as the history of changes made to those files.
+-> It is a kind of folder related to one product.
+-> Changes are personal to that particular Repository.
+
+<h2><u>Server:-</u></h2>
+-> It Stores all the Repositories.
+-> It contains metadata also.
+
+<h2><u>Working Directory/Workspace:-</u></h2>
+-> When you worked on your project and made some changes, you're dealing with your project's working directory.
+-> Where you see files physically and do modification.
+-> <mark>At a time, you can work on particular Branch.</mark>
+
+<h2><u>Staging Area/ Index:-</u></h2>
+-> The staging area can be described as a preview of your next commit.
+-> You are allowed to add and remove changes from the staging area.
+-> The Git index is a staging area between the working directory and repository.
+-> It is used to build up a set of changes that you want to commit together.
+-> Although, Git doesn't have a dedicated staging directory where it can store some objects representing files changes. Instead, it uses file called index.
+
+<mark>Note: As mentioned earlier index is a file, not a directory, so Git is not storing objects into it. Instead, it stores information about each file
+in your repository. This information could be, mtime(It is the time of the last update), file(It is name of the file), wdir(The version of the file in
+the working directory), stage(the version of the file in the index) and Repo(The version of the file in the repository)
+
+And finally, Git creates your working directory to match the content of the commit that HEAD is pointing.
+
+<mark> In other CVCs, developers generally makes modifications and commit their changes directly to the Repository. But git uses different strategy.
+Whenever you do commit an operation, git looks for the file present in the staging area. Only those files present in the staging area are considered
+for commit and not all the modified files.</mark>
+
+<h2><u>Commit:-</u></h2>
+-> Store changes in the repository. You will get one Commit-ID.
+-> It is 40 alpa-numeric characters.
+-> It uses SHA-1 checksum concept.
+-> Even if you change one dot, Commit-ID will get change.
+-> It actullay helps you to track the changes.
+-> Commit is also names as SHA1 hash.
+
+<h2><u>Commit ID/ Version-ID/ Version:-</u></h2>
+-> Reference to identify each change.
+-> To identify who changed the file.
+
+<h2><u>Tags:-</u></h2>
+Tags assign a meaningful name with a specific version in the repository. Once a tag is created for a particular save, even if you create a new commit,
+it will not be updated.  
+
+<h2><u>Snapshots:-</u></h2>
+-> Represents some data of particular time.
+-> <mark>It is always incremental i.e. It stores the changes (appended data) only. Not entire copy.</mark>
+
+<h2><u>Push:-</u></h2> Push operations copies changes from local repository instances to a remote or central repo. This is used to store the changes permanently into the
+git repository.
+
+<h2><u>Pull:-</u></h2> Pull operation copies the changes from a remote repository to a local machine. The pull operation is used for synchronisation between two repo.
+
+<h2><u>Branch:-</u></h2> Product is some, so one repository but different task.
+-> Each task has one separate Branch.
+-> Finally merges(code) all Branches.
+-> Useful when you want to work paralley.
+-> Can create one branch on the basis of another Branch.
+-> Default Branch is 'Master'.
+-> File created in workspace will be visible in any of the branch workspace untill you commit. Once you commit, then that file belongs to that particular Branch.
+
+<h2><u>Advantages of Git:-</u></h2>
+-> Free and Open Source.
+-> Fast and Small (as most of the operations are performed locally, therefore it is fast)
+-> Security (Git uses a common Cryptographic hash function called Secure hash function (SHA-1) to name and identify objects within its database.)
+-> No need of powerful hardware.
+-> Easier Branching (If we create a new branch, it will copy all the codes to the new branch. 
+
+<h2><u>Types of Repositories:-</u></h2>
+
+<u>1. Bare Repositories (Central Repo.)</u>
+-> Store and share only.
+-> All central repositories are Bare Repo.
+
+<u>2. Non-Bare Repositories (Local Repo)</u>
+-> Where you can modify the files.
+-> All local repositories are non-bare repositories.
+
+</h4></pre></html>

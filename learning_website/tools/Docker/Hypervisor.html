@@ -1,0 +1,106 @@
+<html><h2><u>Hypervisor</u></h2>
+<h4><pre>
+Hypervisor is a piece of software or firmware that creates and run Virtual Machines. A Hypervisor is sometimes also called a Virtual Machine Manager (VMM).
+
+<h3><u>Types of Hypervisor -</u></h3>
+1. Type - 1 Hypervisor (Bare Metal or Native Hypervisor).
+2. Type - 2 Hypervisor (Hosted Hypervisor). 
+
+<h3><u>Type - 1 Hypervisor</u></h3>
+Also called Bare Metal Hypervisor. Type - 1 Hypervisor runs directly on the system hardware (<mark>It is fireware</mark>). A guest O.S. runs on another level 
+above the Hypervisor.
+
+-> VMware ESXi is a Type -1 Hypervisor that runs on the host server hardware without an underlying O.S.
+-> Type - 1 Hypervisor act as their own operating system.
+
+<mark>ESXi provides a virtualization layer that abstracts the CPU, storage, memory and networking resources of the physical host into multiple Virtual Machine.</mark>
+
+It is generally used at enterprise level.
+
+<img src="pic/Hypervisor1.JPG" alt="HTML5 Icon" style="width:600px;height:400px;">
+
+<h3><u>Type - 2 Hypervisor(Hosted Type)</u></h3>
+Hypervisor that runs within a Conventional O.S. environment, and the host O.S. provides.
+
+-> Example of Type - 2 Hypervisor are VMware workstation, Oracle VirtualBox and Microsoft Virtual PC.
+-> It doesn't not have direct access to the host hardware & resources.
+
+It is used for testing or learning.
+<img src="pic/Hypervisor2.JPG" alt="HTML5 Icon" style="width:600px;height:400px;">
+
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<table>
+  <tr>
+        <th>Criteria</th>
+    <th>Type - 1 Hypervisor</th>
+    <th>Type - 2 Hypervisor</th>
+
+  </tr>
+  <tr>
+    <td>aka</td>
+    <td>Bare Metal and Native</td>
+    <td>Hosted</td>
+
+  </tr>
+  <tr>
+    <td>Virtualization</td>
+    <td>Hardware Virtualization</td>
+    <td>O.S. Virtualization</td>
+
+  </tr>
+  <tr>
+    <td>Operation</td>
+    <td>Guest O.S. and application run on the hypervisor.</td>
+    <td>Run as an application on the hosted O.S.</td>
+ </tr>
+   <tr>
+    <td>Scalability</td>
+    <td>Better Scalability.</td>
+    <td>Not so much because of its Resilience on the underlying O.S.</td>
+ </tr>
+   <tr>
+    <td>System Independence</td>
+    <td>Has direct access to hardware along with Virtual Machine it host.</td>
+    <td>They are not allowed to directly access the host hardware and its resources.</td>
+ </tr>
+   <tr>
+    <td>Performance</td>
+    <td>Higher Performance as there is no middle layer.</td>
+    <td>Comparatively has reduce performance rate as it runs with extra overhead.</td>
+ </tr>
+   <tr>
+    <td>Security</td>
+    <td>More Secure</td>
+    <td>Less secure, as any problem in the base O.S. affect the entire system.</td>
+ </tr>
+   <tr>
+    <td>Example</td>
+    <td>VMware ESXi, hyper-V, Xenserver</td>
+    <td>VMware, Oracle VirtualBox</td>
+ </tr>
+</table>
+
+</body>
+
+</h4></pre>
+</html>

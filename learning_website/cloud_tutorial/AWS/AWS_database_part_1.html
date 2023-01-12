@@ -1,0 +1,89 @@
+<html><h2><u><center>AWS Database - Introduction</center></u></h2>
+<h4><pre> 
+<h3><u>What is Data?</u></h3>
+-> In simple words, data can be facts related to any object.
+-> For eg. your age, job, house no, contact no, name, place are some data related to you.
+
+<h3><u>What is Database?</u></h3>
+-> Database is a systematic collection of data.
+-> Databases support storage and manipulation of data.
+-> Eg - Facebook, Telecom companies, Amazon.com
+
+<h3><u>What is DBMS?</u></h3>
+-> DBMS is a collection of programs which enable its users to access database, manipulate data, reporting/ representation of data.
+-> Types of DBMS
+   - Hierarchical
+   - Network
+   - Relational
+   - Object Oriented   
+   
+<h3><u>Relational Database/SQL</u></h3>
+-> A Relational Database is a data structure that allows you to link information from different 'tables' or different types of data bucket.
+-> Tables are related to each other.
+-> All fields must be field.
+-> Best suited for OLTP (Online Transaction Processing)
+-> Relational DB - MySQL, Oracle DBMS, IBM DB2
+-> A row of a table is also called Record. It contains the specific information of each individual entry in the table.
+-> Each table has its own Primary Key.
+-> A schema (Design of a database) is used to strictly defines, tables, column, indexes and relation between tables.
+-> Relational DB are usually used in Enterprises application/scenario.
+-> Exception in MySQL which is used for web application.
+-> Common application for MySQL include php and java based web applications that requires a database storage backend. (Eg -> JOOMLA)
+-> Cannot scale-out horizontally.
+-> Virtually all Relational DB uses SQL.
+
+<h3><u>Non-Relational Database/NoSQL (Not only Structure Query Language)</u></h3>
+-> Non-Relational Databases store data without a structured mechanism to link data from different tables to one another.
+-> Require low cost hardware.
+-> Much faster performance (Read/Write) compared to Relational DBs.
+-> Never provide table with flat fixed column records. It means schema-free.
+-> Best suited for Online Analytical Processing (Data warehouse).
+-> Eg of Nosql databases - MongoDB, Cassandra, DynamoDB, Pastegre, Raven, Redis etc.
+
+<u> Types of No-SQL Databases</u>
+1. Columnar Database (Cassandra, HBase)
+2. Document Database (MongoDB, CouchDB, RavenDB)
+3. Key-Value Database (Redis, Riak, DynamoDB, TokyoCabinet)
+4. Graph Based Database (Neo4J, FlockDBB) 
+
+<u>Columnar Database</u>
+-> A Columnar database is a DBMS that stores data in columns instead of rows.
+-> In a Columnar DB, all the column1 values are physically together, followed by all the column2 values.
+-> In a row oriented DBMS, the data would be stored like this, (1,Bob, 30, 8000; 2, Avan, 26, 4000; 3, Vian, 39, 2000)
+-> In a column based DBMS, the database would be stored like this, (1,2,3; Bob, Avan, Vian; 30, 26, 39; 8000, 4000, 2000)
+-> Benefit is that because, column based DBMS is self indexing, it uses less disk space that a RDBMS containing the same data.
+-> It easily perform operation like min, max and Avg.
+
+<u>Document Database</u>
+-> Document DB make it easier for developers to store and querying data in a DB by using the same document model format they use in their application code.
+-> Document DBs are efficient for storing catalog.
+-> Store semi-structure data as document typically in JSON or XML format.
+-> In the following example, A JSON like document describe a book.
+[
+{ "year": 2010,
+  "title": "AWS Fundamentals",
+  "info": {
+		"Write": ["Siddharth", "Sachin"]
+		"release date": "2020-01-07",
+		"rating": 6.2;
+		"genre": "Cloud"
+	      }
+}
+] 
+
+-> A document database is a great choice for contain management application such as blogs and video platforms.
+
+<u>Key-Value Database</u>
+-> A key-Value DB is a simple DB that uses an associative array (think of a dictionary) as a fundamental model where each key is associated with one and only one value in a 
+   collection.
+-> It allows horizontal Scaling.
+-> Use cases - Shopping cart and session store in app like FB and twitter.
+-> This improves application performance by storing critical pieces of data in-memory for low latency access.
+-> Amazon Elasticache as an in-memory key-value stores. 
+
+<u>Graph Based Database</u>
+-> A graph based DB is basically a collection of Nodes and edges. Each node represent an entity (like person) and each edge represent a connection or relationship between 
+   two nodes.
+
+</h4>
+</pre></html>

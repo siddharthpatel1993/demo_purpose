@@ -1,0 +1,69 @@
+<html><h2><u><center>IAM part four</center></u></h2>
+<h4><pre>
+<h3><u>IAM Role</u></h3>
+-> An IAM role, is a set of permissions that grant access to actions and resources in AWS.
+-> These permissions are attached to the Role, not to an IAM user or group. Instead of being uniquely associated with one person, a role is intended to be assumable by anyone 
+   who needs it.
+-> A role does not have standard long-term credentials (password or access keys) associated with it.
+-> If a user assumes a role, temporary security credentials(STS) are created dynamically and provided to the user. 
+-> Following entities can use role -
+   - An IAM user in the same AWS account
+   - An IAM user in different AWS account
+   - A web service offered by AWS such as Amazon Elastic Compute Cloud.
+   
+<u>There are two ways to use a Role -</u>
+1. Interactively in the IAM Console 
+-> IAM users in your account using the IAM console can switch to a role to temporarily use the permissions of the role in the console.
+-> The user give up the their original permissions and take on the permissions assigned to the role.
+-> When the user exists the role, the original permissions are restored.
+
+2. Programmatically with the AWS CLI, tools for windows powershell or API
+-> An application or a service offered by AWS (like Amazon EC2) can assume a role by requesting temporary security credentials for a role with which to make programmatic 
+   request to AWS.
+-> You use a role this way so that you don't have to share or maintain long-term security credentials for each entity that requires access to a resource.
+
+<u>Difference between IAM Role and Resource Based Policy</u>
+-> Unlike a user-based policy, a resource-based policy specifies who can access that resource.
+-> Cross account access with a resource-based policy has an advantage over a role. With a resource that is accessed through a resource-based policy, the user still works 
+   in the trusted account and does not have to give up him or her user permissions in place of the role permissions. 
+-> In other words, the user continues to have access to resources in the trusted account at the same time as he or she has access to the resource in the trusting account.
+-> This is useful for task such as copying information to or from the shared resource in the other account.
+-> Note that not all services support resource-based policy.
+
+
+<h3><u>IAM Role Delegation</u></h3>
+-> Delegation is the granting of permission to someone to allow access to resources that you control.
+-> Delegation involves setting up a trust between the account that owns the resource (the trusting account) and the account that contains the users that need to access 
+   the resource (the trusted account).
+
+-> The trusted and trusting accounts can be any of the following -
+1. The same account
+2. Two accounts that are both under your organization's control
+3. Two account owned by different organization.
+
+-> To delegate permission to access a resource, you create an IAM role that has two policies attached.
+1. The trust policy {JSON format}
+2. The permission policy {JSON format}
+
+-> The trusted entity is included in the policy as the principal element in the document.
+-> When you create a trust policy, you cannot specify a wildcard(*) as a principal.
+
+<h3><u>Cross Account Permissions</u></h3>
+-> You might need to allow users from another AWS account to access resources in your AWS account. If so, don't share security credentials, such as access keys between 
+   accounts. Instead, use IAM roles.
+-> You can define a role in the trusting account, that specifies what permissions the IAM users in the other account are allowed.
+-> You can also designate which AWS account have the IAM users that are allowed to assume the role. We don't define usere here, rather AWS accounts.   
+
+<h3><u>Role for Cross-Account Access</u></h3>
+-> Granting access to resources in one account to a trusted principal in a different account.
+-> Roles are the primary way to grant cross-account access.
+-> However with some of the web services offered by AWS, you can attach a policy directly to a resource. These are called resource-based policy. You can use them to 
+   grant principals in another AWS account access to the resource.
+-> The following services support resource-based policy -
+1. Amazon S3
+2. Amazon Simple Notification Service
+3. Amazon Simple Queue Service
+4. Amazon Glacier Vault
+   
+</h4>
+</pre></html>

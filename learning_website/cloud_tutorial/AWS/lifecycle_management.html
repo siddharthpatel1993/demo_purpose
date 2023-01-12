@@ -1,0 +1,20 @@
+<html><h2><u><center>Lifecycle Management</center></u></h2>
+<h4><pre>
+-> Lifecycle Management is used so that objects are stored cost-effectively throughout their lifecycle. 
+-> A lifecycle configuration is a set of rules that define the actions applied by S3 to a group of objects.
+-> The lifecycle defines two types of actions:
+   1. <u>Transition actions:</u> When you define the transition to another storage class. For example, you choose to transit the objects to Standard IA storage class 30 days after you 
+         have created them or archive the objects to the Glacier storage class 60 days after you have created them.
+   2. <u>Expiration actions:</u> You need to define when objects expire, the Amazon S3 deletes the expired object on your behalf.
+
+Example -> Suppose business generates a lot of data in the form of test files, images, audios or videos and the data is relevant for 30 days only. After that, you might want to 
+           transition from standard to standard IA as storage cost is lower. After 60 days, you might want to transit to Glacier storage class for the longtime archival. Perhaps 
+           you want to expire the object after 60 days completely, so Amazon has a service known as Lifecycle Management, and this service exist within S3 bucket.
+
+<h3><u>Lifecycle policies:-</u></h3>
+1. <u>Use Lifecycle rules to manage your object:</u> You can manage the Lifecycle of an object by using a Lifecycle rule that defines how Amazon S3 manages objects during their 
+                                              lifetime.
+2. <u>Automate transition to tiered storage:</u> Lifecycle allows you to transition objects to Standard IA storage class automatically and then to the Glacier storage class.
+3. <u>Expire your objects:</u> Using Lifecycle rule, you can automatically expire your objects.
+</pre></h4>
+</html>

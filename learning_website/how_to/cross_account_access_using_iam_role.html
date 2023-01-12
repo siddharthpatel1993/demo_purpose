@@ -1,0 +1,47 @@
+<html><h2><u><center>Cross Account Access Using IAM Role</center></u></h2>
+<h4><pre> 
+1. Login with first Account
+2. Create one group and then create two IAM users in it (user1 and user2).
+3. Attach policy to group ( Example - EC2ReadOnlyAccess)
+4. Login to second account i.e. second acc.
+5. Create one S3 bucket
+6. Create a role -> Another AWS acc. -> Insert AccountID of first -> Attach Policy (Policy - S3ReadOnlyaccess and Role Name - S3read)
+7. Go to S3read role and check the Trust relationships (notice the account name in trusted entities) 
+8. Now login back to first account. Click on Group -> GroupName -> Permissions -> Add permissions -> create Inline Policy.
+9. Make sure you have settings as mentioned below and then click on Review Policy. Give Name and then create policy.
+
+<u>Visual Editor:</u>
+
+service -> STS, Actions -> Write(AssumeRole), Resources -> All resources
+
+<u>JSON:</u>
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "sts:AssumeRole",
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+}
+
+9. Now login as IAM user1
+10. Switch Role -> Give the accountID of user2 give the role name, leave the display name click on switch role.
+11. Now check whether you are able to see the bucket of another account or not.
+12. Repeat step 9 and 10 but with user 2
+13. Now login into second account -> Role -> Trusted Relationship -> edit -> Paste ARN of user 1 -> update Policy
+14. Now login again in user 1 -> Switch Role -> test S3 bucket
+15. Now login as user2 -> Switch Role -> You will get error.
+
+Type of Trusted Entity (Role)
+-> AWS service
+-> Another AWS account
+-> Web Identity
+-> SAML 2.0 Federation 
+</h4>
+</pre></html>

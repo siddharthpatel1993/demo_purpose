@@ -1,0 +1,85 @@
+<html><h2><u><center>Git Remote</center></u>
+<h4><pre>
+-> In Git, the term remote is concerned with the remote repository. 
+-> A remote repository is stored on a code hosting service like an internal server, GitHub, Subversion and more.
+-> The developers can perform many operations with the remoter server such as clone, push, pull and more.
+
+<h3><u>Check your remote -></u></h3>
+-> To check the configuration of the remote server, run the git remote command.
+-> The git remote command allows accessing the connection between remote and local.
+-> If you want to see the original existance of your cloned repository, use the git remote command.
+
+Example -> $ git remote
+
+<mark>Note: The given command would provide the remote name as the origin. Origin is the default name of the remote server, which is given my git.</mark>
+
+<h3><u>Git remote -v -></u></h3>
+-> Git remote supports a specific option -v to show URLs that Git has stored as a short name.
+-> These short names are used during the reading and writing operation.
+-> Here, -v stands for verbose. We can use --verbose in place of -v.
+
+Example -> $ git remote -v or $ git remote --verbose
+
+<h3><u>Git remote Add -></u></h3>
+-> When we fetch a repository implicitley, git adds a remote for the repository.
+-> Also, we can explicitly add a remote for a repository.
+-> We can add a remote as a short nickname or short name.
+
+Example -> $ git remote add short_name remote_URL
+
+<h3><u>Fetching and pulling -></u></h3>
+-> You can fetch and pull data from the remote repository.
+-> The fetch and pull command goes out to that remote server, and fetch all the data from the remote project that you don't have yet.
+-> These commands let us fetch the references to all the branches from the remote.
+
+Example -> $ git fetch remote_URI
+
+To clone the remote repository from your remote projects, run the below command:
+
+Example -> $ git clone remote_URI
+
+When we clone a repository, the remote repository is added by a default name "origin". So, mostly, the command is used as git fetch origin.
+
+<mark>Note: The git fetch origin fetches the updates that have been made to the remote server since you cloned it. The git fetch command only downloads the data
+to the local repository; it doesn't merge or modify the data until you don't operate. You have to merge it manually into your repository when you want. </mark>
+
+To pull the repository, run the below command:
+Example -> $ git pull remote
+
+<mark>Note: The git pull command automatically fetches and then merges the remote data into your current branch. Pulling is an easier and comfortable workflow
+than fetching. Because the git clone command sets up your local master branch to track the remote master branch on the server your cloned.</mark>
+
+<h3><u>Pushing to Remote Branch -></u></h3>
+-> If you want to share the your project, you have to push it upstream.
+-> The git push command is used to share a project or send updates to the remote server.
+
+Example -> $ git push remote branch
+
+<mark>It is a special command-line utility that specifies the remote branch and directory. When you have multiple branches on a remote server, then this command
+assists you to specify your main branch and repository.</mark>
+
+<h3><u>Git Remove Remote -></u></h3>
+You can remove a remote connection from a repository.
+
+Example -> $ git remote rm destionation or $ git remote remove destionation
+
+<h3><u>Git Remove Rename -></u></h3> 
+Git allows renaming the remote server name so that you can use a short name in place of the remote server name. 
+
+Example -> $ git remote rename old_name new_name
+
+<h3><u>Git Show remote -></u></h3>
+To see additional information about a particular remote, use the git remote command along with show sub-command. It is used as:
+
+Example -> $ git remote show remote_name
+
+<h3><u>Git change remote(changing a Remote's URL) -></u></h3>
+The git remote set command is used to change the URL of the repository. It changes an existing remote repository URL.
+
+Example -> $ git remote set-url remote_name new_URL
+
+
+ 									
+									
+</pre></h4>
+</h2></html>

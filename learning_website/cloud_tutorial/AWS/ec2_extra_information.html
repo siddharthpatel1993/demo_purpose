@@ -1,0 +1,77 @@
+<html><h2><u><center>EC2 Access, Status Check and EC2 Meta Data</center></u></h2>
+<h4><pre>  
+<h3><u>EC2 Access -</u></h3>
+-> To access instances, you need a key and key pair Name.
+-> You can download the private key only once.
+-> The public key is saved by AWS to match it to the key pair Name and private key when you try to login to the EC2 instances.
+-> Without key pair you cannot access instances via RDP or SSH.
+-> There is 20 EC2 instances soft limit per region, you can submit a request to AWS to increase it. 
+
+<h3><u>EC2 Status Check -</u></h3>
+-> By default AWS EC2 service performs automated status checks every one minute.
+-> This is done on every running EC2 instances to identify any H/W or software issue.
+-> Status check is inbuilt into the AWS EC2 instance.
+-> They cannot be configured, deleted or disable.
+-> EC2 services can send its metric data to AWS cloudwatch every 5 minutes (enabled by default).
+-> Detailed monitoring is chargeable which sends metric in every 1 minute.
+-> You are not charged for EC2 instances, if they are stopped, however attached EBS volumes incur charges. 
+
+Note: 1. EBS Backed EC2 instance means the root volume of EC2 instance where O.S has been placed is EBS.
+      2. Instance Store Backed EC2 means the root volume of EC2 instance is Instance Store.
+
+<h3><u>When you stop an EBS Backed EC2 instance</u></h3>
+-> Instances perform a shutdown.
+-> State changes from "Running" to "Stopping".
+-> EBS Volumes remain attached to the instance.
+-> Any data cached in RAM or instance store volume is gone.
+-> Instances retain its private IPv4 or any IPv6 address.
+-> Instances release its public IPv4 address back to AWS pool because public IP is dynamic.
+-> Instances retain its Elastic IP address. It is public IP and static IP address which never changes. 
+
+<h3><u>EC2 Termination</u></h3>
+-> When you terminate a running instance the instance state changes from "Running" to "Shutting Down" to "Terminated".
+-> During the shutdown down and terminated state, you do not incur charges.
+-> By default, EBS Root Devices volumes are deleted automatically when the EC2 instances are terminated.
+-> Any additional (non boot/boot) volumes, attached to the instances by default, persist after the instance is terminated.
+-> That means the root volume only will be get deleted by default, the additional volume will still there after termination.
+-> You can modify both behaviors by modifying the 'Delete on Termination' attribute of any EBS Volumes during instances launch or while running.
+-> Enable 'EC2 Termination Protection' against accidental termination.   
+
+<h3><u>EC2 Metadata</u></h3>
+-> The is instance data that you can use to configure or manage the instance.
+   eg -> IPv4 addresses, IPv6 addresses, DNS hostname, AMI-id, Instance ID, Instance Type, local hostname, public keys, security groups.
+-> Metadata can be only viewed from within the instance itself i.e. you have to login to the instance.
+-> Metadata is not protected by encryption, anyone that has access to the instance can view the data.
+-> To view the instance metadata, GET http://169.254.169.254/latest/Metadata 
+
+<h3><u>Instances User Data</u></h3>
+-> Data supplied by the user at the instance launch in the form of a script to be executed during the instance boot.
+-> User data is limited to 16 KB.
+-> You can change user data by stopping EC2 first.
+-> User data is not encrypted.
+
+<h3><u>EC2 Bare Metal Instances</u></h3>
+-> Non virtualized Environment.
+-> Operating System runs directly on Hardware.
+-> Suitable for Licensing Restricted tier-1 business critical application.
+-> i3 metal, i5-metal,r-5 metal, Z1d metal, U-6tb1 metal are some examples.
+-> If metal is placed in the instance type, then it is Bare metal example.
+
+<h3><u>Elastic Block Storage</u></h3>
+-> Most common replicate with A-Z.
+-> EBS volumes attach at launch and delete when instance terminate by default, unless you uncheck the box.
+-> EBS volumes attached to a running instance are not deleted when instance is terminated but are detached with data interact.
+-> If you have used EBS volume as root volume for an instance then it will be called as EBS backed instance. 
+-> It is Network Attached Storage (NAS), It is slower than Instance Storage.
+
+<h3><u>Instance Storage</u></h3>
+-> Physically attach to the host server.
+-> Data not lost when OS is rebooted.
+-> Data lost when -
+   1. Underlying driver fails
+   2. Instance is stopped or terminated.
+-> You can't detach or attach to another instance.
+-> Do not rely on for valuable long term data.
+-> It is Direct Attached Storage (DAS), it is faster than EBS.
+</pre></h4>
+</html>

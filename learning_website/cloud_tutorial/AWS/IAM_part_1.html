@@ -1,0 +1,133 @@
+<html><h2><u><center>Identity and Access Management (IAM)</center></u></h2>
+<h4><pre>
+-> IAM refers to a framework or policies and technologies for ensuring that the proper people in an organization have the appropriate access to technology resources.
+-> AWS Identity and access management is a web service that helps you securely control access to AWS resources.
+-> You use IAM to control who is authenticated (signed-in) and authorized (has permission) to use resources.
+-> When you first create an AWS account, you begin with a single sign-in identity that has completely access to all AWS services and resources in the account.
+-> This identity is called the AWS account 'Root user' and is accessed by signing-in with the email address and password that you used to create the account.
+-> AWS strongly recommends that you do not use the root user for your everyday task, even the administrative ones.
+-> Use other IAM user accounts to manage the administrative task of your account and securely lock away the root user credentials and use them to perform only a few account 
+   and service management task.
+
+<h3><u>Limitation on User Account</u></h3>
+-> IAM user limit is 5000 per AWS account. You can add up to 10 users at one time.
+-> You are also limited to 300 Groups per AWS account.
+-> You are limited to 1000 IAM roles under AWS account.
+-> Default limits of managed policies attached to an IAM role and IAM user is 10.
+-> IAM user can be a member of 10 groups (max.).
+-> We can assign two access keys (max.) to an IAM user.
+
+<h3><u>Features of IAM</u></h3>
+1. Shared access to your AWS account
+-> You can grant other people permission to administer and use resources in your AWS account without having to share your access credentials (password or access key).
+
+2. Granular Permissions
+-> You can grant different permission to different people for different resources.
+-> For instance, you can allow some users complete access to EC2, S3, dynamo DB, Redshift. 
+-> While for others, you can allow read only access to just some s3 buckets, or permission to administer just some EC2 instances or to access your billing information but 
+   nothing else.
+
+3. Secure access to AWS resources for applications that run on Amazon EC2
+-> You can use IAM features to securely give application that run on EC2 instances the credentials that they need in order to access other AWS resources.
+-> Example, include S3 buckets and RDS or Dynamo DB databases.
+
+4. Multifactor Authentication (MFA)
+-> You can add two-factor authentication to your account and to individual users for extra security. 
+-> You can use physical hardware or virtual MFA (for eg -> Google Authenticator).    
+
+5. Identity Federation
+-> You can allow users who already have passwords elsewhere, for eg. in your corporate network or with an internet identity provider to get temporary access to your AWS 
+   account.
+
+6. Identity information for assurance
+-> If you use AWS CloudTrail, you receive logs records that include information about those who made request for resources in your account. That information is based on 
+   IAM identities.
+
+7. PCI-DSS Compliance
+-> IAM support the processing, storage and transmission of credit card by a merchant or service provider, and has been validated as being Compliant with Payment Card 
+   Industries (PCI) Data Security Standard (DSS).
+
+8. Eventually Consistent 
+-> If a request to change some data is successful, the change is committed and safely stored. 
+-> However, the change must be replicated across IAM, which can take some time.
+-> IAM achieves high availability by replicating data across multiple servers within AWS data center around the world.   
+
+<h3><u>Free to Use</u></h3>
+-> AWS IAM is a feature of your AWS account offered at no additional charges.
+-> You will be charged only for use of other AWS products by your IAM users.
+
+<h3><u>Important Terms in IAM</u></h3>
+1. Principal
+2. Request
+3. Authentication
+4. Authorization
+5. Actions/Operations
+6. Resources
+
+<u>1. Principal </u>
+-> A principal is a person or application that can make a request for an action or operation on AWS resources.
+-> Your administrative IAM user is your first principal.
+-> You can allow users and services to assume a role.
+-> IAM users, Roles, Federated users and applications are all AWS principals.
+<mark>-> You can support federated users or programmatic access to allow an application to access your AWS account.</mark>
+
+<u>2. Request </u>
+-> When a principal tries to use AWS management console, the AWS API or the AWS CLI, that principal sends a request to AWS.
+-> The request include the following information - Actions, Resources, Principal, Environment Data, Resource Data. 
+-> Actions, that the principal wants to perform.
+-> Resources, upon which the actions are performed.
+-> Principal information, including the environment from which the request was made.
+-> Request Context
+   - Before AWS can evaluate and authorize a request, AWS gathers the request information.
+   - Principal (the Requester), which is determined based on the authorization data.
+   - This include the aggregate permissions that the associated with that principal.
+   - Environment data, such as IP address, User agent, SSL enabled status or time of the day.
+   - Resource data, or data related to the resource that is being requested.
+   
+<u>3. Authentication </u>
+-> A principal sending a request must be authenticated (signed into AWS) to send a request to AWS.
+-> Some AWS services, like AWS S3, allow request from anonymous users, they are exception to the role.
+-> To authenticate from the console as root user, you must sign-in with your username and password.
+-> To authenticate from the API to CLI, you must provide your access key and secret key.
+-> Even if you are root user and accessing the AWS from CLI, you need to have access key and secret key.
+-> You might also be required to provide additional security information like MFA ( eg -> google authenticator )
+
+<u>4. Authorization </u>
+-> To authorize request, IAM uses value from the request context to check for matching policies and determine whether to allow or deny the request.
+-> IAM policies are stored in IAM as JSON documents and specify the permissions that are allowed or denied.
+-> By default, only the AWS root user has access to all the resources in that account. 
+-> User (identity) based Policies, specify permission allowed/denied for principals.
+-> Resource based Policies, specify permission allowed/ denied for resources. Popular for granting cross account permissions.
+-> IAM checks each policy that matches the context of your request.
+-> If a single policy includes a denied action, IAM denies the entire request and stop evaluating. This is called Explicit Deny.
+-> The evaluation logic follows these rules -
+   - By default, all request are denied (implicit deny).
+   - An explicit allow overrides this default.
+   - An explicit deny overrides any allows.
+   
+<u>5. Action </u>
+-> Actions are defined by a service, and are the things that you can do to a resource, such as viewing, creating, editing and deleting that resource.
+-> IAM supports approx. 40 actions for a user resource including create user, delete user etc.
+-> Any actions or resources that are not explicitly allowed are denied by default.
+-> After your request has been authenticated and authorized, AWS approves the actions in your request.   
+
+<u>6. Resource </u>
+-> A resource is an entity that exist within a service.
+-> Examples are EC2 instances, S3 bucket, IAM users, Dynamo DB table.
+-> Each AWS service defines a set of actions that can be performed on each resource.
+-> After AWS approves the actions on your request, those actions can be performed on the related resource within your account.
+-> If you create a request to perform an unrelated action on resource, that request is denied.
+-> When you provide permissions using an identity based policy in IAM, then you provide permissions to access resources only within the same account.   
+   
+-> You can create a new IAM policy in the AWS management console using one of the following ways -
+1. Json 
+   - You can create your own JSON syntax.
+
+2. Visual Editor
+   - You can construct a new policy from scratch in the visual editor.
+   - If you use the visual editor, you do not have to understand JSON syntax.
+
+3. Import
+   - You can import a managed policy within your account and then edit the policy to customize it to your specific requirement.   
+</h4>
+</pre></html>

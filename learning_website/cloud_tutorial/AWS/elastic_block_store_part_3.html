@@ -1,0 +1,77 @@
+<html><h2><u><center>Encryption of EBS Volume</center></u></h2>
+<h4><pre>
+-> EBS encryption is supported on all EBS volumes types and all EC2 instance families.
+-> Snapshots of encrypted volumes are also encrypted.
+-> Creating an EBS volumes from encrypted snapshot will also result it an encrypted volume.
+-> Data encryption at rest means, encrypting data while it is stored on the data storage device.
+-> Data-in-transit means when the data is moving from EC2 to EBS.
+-> There are many ways you can encrypt data on an EBS volume at rest, while the volume is attached to an EC2 instance
+   - Use 3rd party EBS Volume
+   - Encryption tools
+   - Use encrypted EBS volumes  
+   - Use encryption at O.S. level
+   - Encrypt data at the application level before storing it to the volume
+   - Use encrypted file system on the top of the EBS volume.
+-> Encrypted volume are accessed exactly like unencrypted ones, basically encryption is handled transparently.
+-> You can attach an encrypted and unencrypted volumes to the same EC2 instance. 
+-> Encryption always done on EC2 side, not on EBS. 
+-> Remember that the EBS volumes are not physically attached to the EC2 instance, rather they are virtually attached through the EBS infrastructure.
+-> This means when you encrypt data on an EBS volumes, data is actually encrypted on the EC2 instance then transferred, encrypted to be stored on the EBS volume
+-> This means that data in transit between EC2 and encrypted EBS volume is also encrypted.
+-> There is no direct way to change the encryption state of the volume (unencrypted to encrypted)
+-> To change the state (indirectly) you need to follow either of the following two ways -
+   1. Attach a new, encrypted EBS volume to the EC2 instance that has the data to be encrypted then -
+      - Mount the new volume to the EC2 instance
+      - Copy the data from the unencrypted volume to the new volume
+      - Both volumes must be on the same EC2 instance. 
+   2. Second Method
+      - Create a snapshot of the unencrypted volume
+      - copy the snapshot and choose encryption of the new copy, this will create an encrypted copy of the snapshot
+      - Use this new copy to create an EBS volume, which will be encrypted too.
+      - Attach the new, encrypted EBS volume to the EC2 instance.
+
+<h3><u>Root EBS Volume Encryption</u></h3>
+-> You will get option to encrypt the root volume at the launch time.
+-> There is no direct way to change the encryption state of a volume.
+-> There is an indirect workaround to this -
+   - Launch the instance with the EBS volume required
+   - Do whatever patching or install application
+   - Create an AMI from the EC2 instance
+   - Copy the AMI and choose encryption while copying
+   - This results it an encrypted AMI that is private (Yours only)
+   - Use the encrypted AMI to launch new EC2 instances which will have their EBS root volume encrypted.   
+
+<h3><u>EBS Encryption Key</u></h3>
+-> To encrypt a volume or a snapshot you need an encryption key, these keys are called Customer Masters key (CMK) and are managed by AWS key managment service (KMS).
+-> When encrypting the first EBS volume, AWS KMS creates a default CMK key. Default CMK key or EBS volume encrypted from it, can't not be sharable to anyone.
+-> This key is used for your first volume encryption, Encryption of snapshots created from this volumes and subsequent volumes created from these snapshots.
+-> After that each newly encrypted volume is encrypted with a unique/ separate AES-256 bit encryption key. This key is used to encrypt the volume, its snapshots, and any 
+   volumes created of its snapshots.
+
+<h3><u>Changing the Encryption Key</u></h3>
+-> You cannot change the encryption (CMK) key used to encrypt an existing encrypted snapshot or encrypted EBS volume.
+-> If you want to change the key, create a copy of the snapshot and specify during the copy process that you want to re-encrypt the copy with a different key.
+-> This comes in handy when you have a snapshot that was encrypted using your default CMK key and you want to change the key in order to be able to share the snapshot
+   with other accounts.
+   
+<h3><u>Sharing EBS Snapshot</u></h3>
+-> By default, only the account owner can create volumes from the account snapshots. You have to give the proper permission to others to use the shared snapshots. 
+-> You can share your unencrypted snapshots with the AWS community by making them public.
+-> Also you can share your unencrypted snapshot with a selected AWS account by making them private then seleting the AWS accounts to share with.
+-> You can not make your encrypted snapshots public.
+-> You cannot make a snapshot of an encrypted EBS volume public on AWS.    
+-> You can share your encrypted snapshot with specific AWS accounts as follows -
+-> Make sure that you use a non-default/ custom CMK key to encrypt the snapshot, not the default CMK key (AWS will not allow the sharing if default CMK is used)
+-> Configure cross account Permission in order to give the accounts(s) with which you want to share the snapshot, access to the custom CMK key used to encrypt the 
+   snapshot.
+-> Without this, the other accounts will not be able to copy the snapshot, nor will be able to create volumes of the snapshot.
+-> AWS will not allow you to share snapshots encrypted using your default CMK key.
+-> For the AWS account(s) with whom an encrypted snapshot is shared -
+   - They must first create their own copies of the snapshot and change the key
+   - Then they use that copy to restore/ create EBS volume.    
+-> You can only make a copy of the snapshot when it has been fully saved to S3 (its status show as complete) and not during the snapshot's pending status (when data blocks)
+   are being moved to S3).
+-> Amazon S3 server side encryption (SSE) protect the snapshot data-in-transit while copying.
+-> You can have upto 5 snapshot copy request running in a single destination per account. 
+</pre></h4>
+</html>

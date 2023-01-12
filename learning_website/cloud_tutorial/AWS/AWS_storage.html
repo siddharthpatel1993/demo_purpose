@@ -1,0 +1,34 @@
+<html><h2><u><center>AWS Storage</center></u></h2>
+<h4><pre>
+-> AWS offers a complete range of cloud storage services to support both application and archival compliance requirements.
+-> Select from objects, file and block storage services as well as cloud data migration options to start designing the foundation of your cloud IT environment.
+
+There are five types of Storage -
+1. Simple Storage Service (S3) {Object level Storage, access it from any where}
+2. Elastic File System (EFS) {Used for updation or patches for multiple servers in different region or AZ from one common place(common place is EFS), Linux based}
+3. Elastic Block Storage (EBS) {Used as root storage on EC2 instance}
+4. Glacier {Used for old data which is rarely used and to keep the data for long time with little latency on access. Now it is part of S3}
+5. Snowball
+
+<h3><u>Difference b/w Block Storage and Object Storage</u></h3>
+<u>Block Storage</u>
+-> Block Storage is suitable for transactional databases, random read/write loads and structured database storage.
+-> Block Storage divides the data to be stored in evenly sized blocks (data chunck) for instance, a file can be split into evenly sized blocks before it is stored.
+-> Data blocks stored in block storage would not contain metadata (data created, data modified, content type etc.)
+-> Block Storage only keeps the address (index) where the data blocks are stored, it does not care what is in that block, just how to retrieve it when required.
+
+Example -> EBS 
+
+<u>Object Storage</u>
+-> Object Storage stores the file as a whole and does not divide them.
+-> In object storage, an object is
+   - the file/ data itself
+   - its metadata
+   - Object Global Unique ID
+-> The object Global Unique ID, is a unique identifier for the object (can be the object name itself) and it must be unique such that it can be retrieved disregarding
+   where it is physical storage location is.
+-> Object storage cannot be mounted as drive
+
+Example -> Dropbox, AWS S3   
+</pre></h4>
+</html>

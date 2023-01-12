@@ -1,0 +1,71 @@
+<html><h2><u><center>AWS Simple Notification Service</center></u></h2>
+<h4><pre> 
+-> SNS is a fast, flexible, fully managed push notification service.
+-> It is a web service that co-ordinates and manages the delivery or sending of messages to subscribing endpoints or clients.
+-> It allows for sending individual messages or fan-out messages to a large number of recipients or to other distributed AWS services.
+-> Messages published to an SN topics will be delivered to the subscriber immediately.
+-> Inexpensive, pay-as-you-go model with no upfront cost.
+-> Reliable (At least three copies of the data are store across multiple AZ in same region).
+-> It is way of sending messages.
+-> When you are using auto-scaling, it triggers an SNS service which email you that 'your EC2 instance is growing'.
+
+ ---------
+|         |
+|Publisher| -> SNS TOPIC -> (lambda, SQS, HTTTP/S, email, SMS) 
+|         |
+ ---------
+ 
+ Publisher - Publishers are also known as producers that produce and send the message to the SNS which is a logical access point.
+ Subscriber - Subscribers such as web servers, email addresses, Amazon SQS queues, AWS Lambda, receive the message or notification from the SNS over one of the supported protocols(Amazon SQS, email, Lambda, HTTPS, SMS). 
+
+<h3><u>SNS TOPIC</u></h3>
+-> Is a logical access point and communication channel.
+-> Each topic has a unique name.
+-> A topic name must be unique within the AWS account.
+-> Each topic is assigned with an AWS Amazon Resource Name(ARN), once it gets created.
+-> A topic can support subscribers and notification deliveries over multiple protocols.
+-> Messages/request published to a single topic can be delivered over multiple protocols as configured when creating each subscriber.
+-> Delivery Formats/transport protocols (endpoints)
+   - SMS
+   - e-mail
+   - email - JSON (for applications)
+   - HTTP/HTTPS
+   - SQS 
+   - AWS Lambda
+
+-> When using Amazon SQS, you(as the owner) create a topic and control access to it by defining access policies that determine which publishers and subscribers can communicate with the topic.
+-> Instead of including a specific destination address in each message, a publisher send messages to topics that they have created or to topics they have permission to publish to.
+-> Amazon SNS matches the topic to a list of subscribers who have subscribed to that topic, and delivers the message to each of these subscriber.
+-> Each topic has a unique name that identifies the Amazon SNS endpoint for publishers to post messages and subscribers to register for notifications.
+-> Subscribers receive all messages published to the topics to which they subscribe, and all subscribers to a topic receive the same messages. 
+-> By default, only the topic owner(who created it) can publish to the SNS topic.
+-> The owner can set//change permissions to one or more users(with valid AWS ID) to publish to his topic.
+-> Only the owner of the topic can grant/change permissions for the topic.
+-> Subscribers can be those with/without AWS ID. Only subscriber with AWS ID can request subscription.
+-> Both publishers and subscribers can use SSL to help secure the channel to send and receive messages. 
+-> Supported push notification platforms -
+   - Amazon Device Messaging
+   - Apple Push Notification Service
+   - Google Cloud Messaging
+   - Windows Push Notification Service
+   - Baidu Cloud Push For Android
+-> SNS Topic can have subscribes from any supported push notification platform, as well as any other endpoint type such as SMS or email.
+-> When you publish a notification to a topic, SNS will send identical copies of that message to each endpoint subscribed to the topic.
+
+<h3><u>Amazon SNS Alternatives</u></h3>
+-> Amazon Kinesis Data Stream
+-> Amazon Managed Queue Service (AWS MQ)
+-> Apache Kafka
+-> Twilio
+-> Pusher
+
+<h3><u>Amazon SNS Pricing</u></h3> 
+1. Push Action - Each 64kb of request payload count as one request. So, 256kb payload will charged as four request.
+2. Mobile push notification - For eg - $0.50/million request
+3. SMS - Price depends on country
+4. Email - $2/100,000
+5. HTTP/S Notification - $0.60/million
+6. SQS and Lambda calls are free. These are charged at SQS and Lambda rates.
+7. Data Transfer    
+</h4>
+</pre></html>

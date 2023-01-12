@@ -1,0 +1,23 @@
+<html><h3>Ansible Modules</h3>
+<h4> <pre>
+=> Ansible ships with a number of modules (called 'module library') that can be executed directly on remote hosts or through playbooks.
+
+=> Your library of modules can reside on any machine, and there are no servers, daemons, or database required.
+
+<mark>Where are ansible modules stored?</mark>
+The default location for the inventory file is /etc/ansible/hosts.
+
+Some examples - 
+ansible demo -b -m yum -a "pkg=httpd state=present"
+
+ansible demo -b -m yum -a "pkg=httpd state=latest"
+
+ansible demo -b -m yum -a "pkg=httpd state=absent"
+
+ansible demo -b -m service -a "name=httpd state=started"
+
+ansible demo -b -m user -a "name=sidd"
+
+ansible demo -b -m copy -a "src=file dest=/tmp"
+</pre></h4>
+</html>

@@ -1,0 +1,125 @@
+<html><h2><u><center>EC2 Pricing Models</center></u></h2>
+<h4><pre>
+-> There are generally 5 pricing models in AWS, which are as follows -
+   1. On Demend
+   2. Dedicated Instance
+   3. Dedicated Host
+   4. Spot Instance
+   5. Reserved Instance
+      a. Standard RI
+      b. Convertible RI
+      c. Schedule RI
+
+-> But it uses three ways to pay for Amazon EC2 instance i.e. On-demend, Reserved Instance and Spot Instance.
+-> Dedicated Host and Dedicated Instance usually billed on-demand.
+-> Spot Instance comes with cheapest rate, then Reserved and other.
+-> You can also pay for Dedicated Host, which provide you with EC2 instance capacity on physical servers dedicated for your use.
+-> By default, we select t2.micro free tier comes with on-demend.
+    
+<u>1. On Demend</u>:
+-> AWS on demand instances are Virtual Servers that run in AWS or AWS Relational Database Service (RDS) and it allows you to pay a fixed rate by the hour (or by the second) 
+   with no commitments.
+
+<h3><u>On Demand Pricing is useful for:-></u></h3>
+-> Users that want low cost and flexibility of Amazon EC2 without any upfront payment or long term commitment.
+-> Applications with short-term, spiky or unpredictable workloads that can't be interrupted.
+-> Applications being developed or tested on Amazon EC2 for the first time.
+-> They are also suitable for use during testing and development of applications on EC2.
+-> With On-demend instances you only pay for EC2 instances you use.
+-> The use of on-demand instances frees you from the cost and complexities of planning, purchasing and maintaining Hardware and transforms what are commonly large fixed costs 
+   into much smaller variable cost.
+-> Pricing is per instance-hour consumed for each instance, from the time an instance is launched until it is terminated or stopped.
+-> Each partial instance hour consumed will be billed per second for Linux Instances and as a full hour for all other instances types.
+ 
+<mark>Note: Linux instance is by the second and windows is by hour.</mark>
+
+<u>2. Reserved</u>:
+-> Amazon EC2 RI provide a significant discount (upto 75%) compared to on-demend pricing and provide a capacity reservation when used in a specific availablity zone.
+-> Reserved instances give you the option to reserve a DB instance for a one or three year term and in turn receive a significant discount compared to the on-demand instance 
+   pricing for the DB instance.
+-> Provides you with a capacity reservation and offers a significant discount on the hourly charge for an instance.
+-> Contract terms are 1 year or 3 years.
+-> If you want to take an advantage of the capacity reservation, then you should buy an RI in a specific Availability Zone. 
+-> There are three types of Reserved Pricing - Standard Reserved Instances, Convertible Reserved Instances, Scheduled Reserved Instances.
+   
+   <u>1. Standard Reserved Instances -</u>
+   -> These provide the most significant discount offer (upto 75% off on demand instances) and are best suited for steady-state usage.
+   -> The more you pay upfront and the longer the contract, the greater the discount.
+
+   <u>2. Convertible Reserved Instances -</u>   
+    -> These offer upto 54% off on demand and the capacity to change the attributes of the reserved instances as long as the exchange results in the creation of 
+       reserved instances of equal or greater value.  
+	   
+   <u>3. Scheduled Reserved Instances -</u>
+   -> These are available to launch within the time windows you reserve.
+   -> Schedule Reserve Instances enable you to purchase capacity reservations that recur on a daily, weekly or monthly basis, with a specified start and duration, for a one 
+      year term.
+   -> You reserve the capacity in advance so that you know it is available when you need it.
+   -> You pay for the time that the instances are scheduled, even if you do not use them.
+   -> Schedule instances are good choice for workloads that do not run continuously, but do run on a regular schedule.
+
+For eg -> You can use schedule instances for an application that runs during business hours or for Batch Processing that run at the end of the week.
+	
+<h3><u>Reserved Pricing is useful for:-></u></h3> 
+-> Applications with steady state or predictable usage.
+-> Applications that require reserved capacity.
+-> Users able to make upfront payments to reduce their total computing costs even further.
+
+Q -> Can I transfer a convertible or standard RI from one Region to another?
+No 
+
+Q -> How do I change the configuration of a convertible RI?
+You can change the configuration of a convertible RI using EC2 Management Console or the get Reserved Instance Management Quota API.
+
+Q -> Do I need to pay a fee when I exchange my convertible RI?
+No, however you need to pay for the delta.
+
+<u>3. Spot</u>:
+-> Amazon EC2 spot instances let you take advantage of unused EC2 capacity in the AWS cloud. Spot instances are available at upto 90% discount compared to on-demand prices.
+-> You can use spot-instances for various test and development workloads.
+-> You also have the options to hibernate, stop or terminate your spot instances when EC2 reclaims the capacity back with two minutes of notice.
+-> In the case of Hibernate, your instance gets hibernated and the RAM data persisted. In the case of Stop, your instance gets shutdown and RAM is cleared.
+-> With hibernate, Spot instances will pause and resume around any interruptions so your workloads can pick up from exactly where they left off.
+-> Spot uses the same underlying EC2 instances as on-demand and reserved Instances, and is best suited for flexible workloads.
+-> You can request spot instances upto your spot limit for each region.
+-> Enables you to bid whatever price you want for instance capacity, providing for even greater savings if your application have flexible start and end times.
+-> You can determine the status of your spot request via spot request status code and message. You can access spot request status information on the spot instance page of the 
+   EC2 console of the AWS management console.
+
+Q -> When would my spot ins get interrupts?
+
+Primary Reason would be Amazon EC2 capacity requirement (eg - On-demend or Reserved instances)
+Secondary, if you have chosen to set a 'max spot price' and the spot price rises above that.
+
+<h3><u>Spot Pricing is useful for:-></u></h3>
+-> Applications that have flexible start and end time.
+-> Applications that are only flexible at very low compute prices.
+-> Users with urgent computing needs for large amounts of additional capacity.
+
+<u>4. Dedicated hosts</u>:
+-> Dedicated Host gives you additional visibility and control over how instances are placed on a physical server, and you can consistently deploy your instances to the same 
+   server over time.
+-> As a result Dedicated host enables you to use your existing server bound software licenses and address corporate compliance and regulatory requirements.
+-> Instances that run on a dedicated host are the same virtualized instances that you had get with traditional EC2 instances that use the Xen hypervisor.
+-> Each dedicated host supports a single instance size and type (for eg. C3.XLARGE).
+-> Pay for a physical host that is fully dedicated to run your instances, and bring your existing per-socket, per-core or per-VM software license to Reduce cost.
+
+<u>4. Dedicated Instance</u>:
+-> Dedicated instances are run in a VPC on Hardware that is dedicated to a single customer.
+-> Your dedicated instances are physically isolated at the host hardware level from instances that belong to other AWS account.
+-> Dedicated instances may share Hardware with other instances from the same AWS account that are not dedicated instance.
+-> Pay for dedicated instances on-demend save upto 70% by purchasing reserved instances, or save upto 90% by purchasing spot instances.
+
+<h3><u>Dedicated Pricing is useful for:-></u></h3>
+-> Useful for regulatory requirements that may not support multi-tenant virtualization.
+-> Great for licensing which does not support multi-tenancy or cloud deployments.
+-> Can be purchased on-demand (hourly).
+-> can be purchased as a Reservation for up to 70% off on demand price.
+
+<mark>Note: If the spot instance is terminated by Amazon EC2, you will not be charged for partial hour of usage.
+However, if you terminate the instance yourself, you will be charged for any hour in which the instance ran.</mark>
+
+<h2><u> EC2 Instance Types:-></u></h2>
+F I G H T D R M C P X Z A U (Mnemonic)        
+</pre></h4>
+</html>

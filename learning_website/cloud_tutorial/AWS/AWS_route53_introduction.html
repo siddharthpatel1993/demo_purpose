@@ -1,0 +1,102 @@
+<html><h2><u><center>AWS Route53</center></u></h2>
+<h4><pre> 
+-> You can use Amazon Route53 to register new domains, transfer existing domains, route traffic for your domains to your AWS and external resources and monitor the health of 
+   your resources.
+-> DNS(Domain Name Server) uses TCP port 53, this is why it's called as Route53.  
+-> There are two type of top level domains in AWS - Generic Level Domain(.com, .org, .net)  and Geographic Level Domain (.cn, .us, .in).
+
+ <h3><u>Route53 Functions</h3></u>
+1. DNS Management
+2. Traffic Management
+3. Availability Management
+4. Domain Registration
+
+<h3><u>Route53 performs three main functions</h3></u>
+1. Register a domain.
+2. As a DNS, it routes internet traffic to the resources for your domain.
+3. Check the health of your resources.
+   - Route53 sends automated requests over the internet to a resource (can be a webserver) to verify that the server is reachable, functional and available.
+   - Also you can choose to receive notifications when a resource becomes unavailable and choose to route internet traffic away from unhealthy resources.  
+
+-> You can use Route53 for any combination of these functions -
+   - You can use route53 both to register your domain and to route internet traffic for the domain.
+   - Or, you can use Route53 to route internet traffic for a domain that you registered with other domain registrar.
+   
+-> When you register a domain with Route53, the service automatically makes itself the DNS service for the domain by doing the following -
+   - It creates a hosted zone that has the same name as your domain.
+   - It assigns a set of four name servers to the hosted zone, unique to the account.
+   - When someone uses a browser to access your website, these name servers inform the browser where to find your resources, such as a web server or an Amazon S3 bucket.
+   - It gets the name servers from the hosted zone and add them to the domain.
+
+<h3><u>AWS supports</h3></u>
+1. Generic Top Level Domains
+2. Geographic Top Level Domains
+
+<h3><u>Registering a domain with Route53</u></h3>
+- You can register a domain with Route53, if the TLD is included on the supported TLD list.
+- If the TLD is not included, you can't register the domain with Route53.
+
+<u>Using Route53 as your service</u>
+-> You can use Route53 as the DNS service for any domain, even if the TLD for the domain is not included on the supported TLD list.
+
+NOTE:- Each Amazon Route53 account is limited to a maximum of 500 hosted zones and 10,000 resource record sets per hosted zone. You can increase the limit by requesting to 
+       AWS.
+
+<u>Steps to configure Route53</u>
+1. You need to register a domain, this can be Route53 or another DNS registrar, but then you connect your domain name in that registrar to route53.
+2. Create hosted zone on Route53, this is done automatically if you registered your domain using Route53.
+   - Inside the hosted zone, you need to create record sets.
+   
+<u>Delegate to Route53</u>
+-> This step connects everything and make it work.
+-> Connect the domain name to the Route53 hosted zone, this is called delegation.
+-> Update your domain registrar with the correct name servers for your Route53 hosted zone.
+-> No other customer hosted zone will share this delegation set with you.
+-> Doing this means Route53 DNS service will be serving DNS traffic for the domain of the hosted zone.
+-> If you registered your domain with a different registrar, you need to configure the Route53 NS servers list in your registrar DNS database for your domain. 
+
+<u>If you are using another domain provider and you did all the changes</u>
+-> When you migrate from one DNS provider to another, for an existing domain this change can take upto 48 hours to be effective.
+-> This is because name server DNS records are typically cached across the DNS system globally on the internet for upto 48 hours (TTL) periods.
+
+<u>Transferring a domain to Route53</u>
+-> You can transfer a domain to Route53 if the TLD is included on the following list.
+-> If the TLD is not included, you can't transfer the domain to Route53.
+-> For most TLD, you need to get an authorization code from the current registrar to transfer a domain.  
+
+<h3><u>Route53 Hosted Zone</u></h3>
+-> A route53 hosted zone is a collection of records for a specified domain.
+-> You create a hosted zone for a domain, and then you create records to tell the domain name system how you want traffic to be routed for that domain.
+-> Basically a hosted zone is a container that holds information about how you want to route traffic for a domain and its sub-domains.
+-> You can create public (internet) hosted zones or private (internal DNS) hosted zones.
+-> For each public hosted zone that you create, Amazon Route53 automatically creates a Name Server (NS) record and a Start of Authority (SOA) record. Don't change these 
+   records.
+-> Route53 automatically creates a Name Server(NS) record with the same name as your hosted zone.
+-> It list the four name servers that are the authoritative name servers for your hosted zone.
+-> Do not add, change or delete names servers in this record. 
+-> When you create a hosted zone, Amazon Route53 automatically creates a Name Server (NS) records and Start of Authority(SOA) record for the zone.
+-> The NS record identifies the four name servers that you give to your registrar or your DNS service, so that DNS queries are routed to Route53 name services.
+-> By default, Route53 assigns a unique set of four Name Servers (known collectively as a Delegation Set) to each hosted zone that you create.
+   eg -> ns-1337.awsdns-39.com
+         ns-895.awsdns-47.com
+         ns-428.awsdns-53.com
+	 ns-1597.awsdns-07.com
+		 
+<h3><u>Route53 as Authoritative DNS</u></h3>
+-> Once you update the Route53 NS settings with your domain registrar to include the Route53 name servers, Route53 will be responsible to respond to DNS queries for the 
+   hosted zone.
+-> This is true whether you do have a functioning website or not.
+-> Route53 will respond with information about the hosted zone whenever someone types the associated domain name in a web browser.
+-> You can create more than one hosted zone with the same name and add different records to each hosted zone.
+-> Route53 assigns four name servers to every hosted zone.
+-> The name servers are different for each of them.
+-> When you update your registrar's name server records, be careful to use the Route53 name servers for correct hosted zone, the one that contains the records that you want 
+   Route53 to use when responding to queries for your domain.
+-> Route53 never returns values for records in other hosted zones that have the same name.
+
+<h3><u>Route53 Hosted Zone default entries</u></h3> 
+Inside the hosted zone by default you have two entries -
+1. NS Entry - Contains the unique sets of Name Servers for this hosted zone.
+2. SOA Entry - Contains information about the hosted zone.
+</h4>
+</pre></html>

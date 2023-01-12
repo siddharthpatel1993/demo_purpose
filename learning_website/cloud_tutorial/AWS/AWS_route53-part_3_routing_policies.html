@@ -1,0 +1,65 @@
+<html><h2><u><center>AWS ROUTE53 - Routing Policies</center></u></h2>
+<h4><pre> 
+-> When you create a record, you choose a routing policy, which determines how Amazon Route53 respond to queries.
+-> It is generally seven types -
+   - Simple Routing(Default)
+   - Failover Routing
+   - GeoLocation Routing
+   - Multi Value Routing
+   - Latency Based Routing
+   - Weighted Routing
+   - Geo-proximity Routing
+   
+<h3><u>Failover Routing Policy</h3></u>
+-> Failover Routing lets you route traffic to a resource when the resource is healthy. If the main resource is not healthy, then route traffic to a different resource.
+-> The primary and secondary records can route traffic to anything from an Amazon S3 bucket that is configured as a website to a complex tree of records.
+-> Failover Routing Policy is applicable for public hosted zone only.   
+
+<h3><u>GeoLocation Routing</h3></u>
+-> GeoLocation routing lets you choose the resources that serves your traffic based on the Geographic location of your users i.e. the location that DNS queries originate from.
+-> For eg - You may have presence in Europe and Asia. Now you want users in that Asia to be served in the Asia and those in Europe to be served by the servers in Europe.
+
+<u>Benefits</u>
+-> You can localize your content and present some or all of your website in the language of your users.
+-> You can also use geolocation routing to restrict distribution of content to only the locations in which you have distribution rights.
+-> You can specify geographic locations by continent, by country or by state in the United States.
+-> If you create separate records for overlapping geographic regions (for eg - one record for North America and one for Canada), priority goes to the smallest geographic region.
+-> GeoLocation works by mapping IP address to locations. However some IP address are not mapped to geographic location. 
+
+<h3><u>Latency Based Routing</h3></u>
+-> If your application is hosted in multiple amazon EC2 regions, you can improve performance for your users by serving their request from the Amazon EC2 region that provide low latency.
+-> To use latency-based routing, you create latency records for your resources in multiple EC2 regions.
+-> When amazon Route53 receives a DNS query for your domain or sub-domain,
+   - It determines which amazon EC2 region you have created latency record for.
+   - Determine which regions gives lowest latency to users.
+   - Then select a latency record for that region.
+-> For eg, suppose you have ELB in US-East and in Asia Pacific(Mumbai) region
+   - You created a latency record for each load balancer.
+   - Here's what happens when a user in london enters the name of your domain in a browser.
+   - DNS routes the request to a Route53 Name Server, Route53 refers to its data on latency between london and the mumbai region, and between london and the N. Virginia.
+   - If latency is lower between london and N. Virginia, Route53 respond to the query with the IP address of the N. Virginia.
+   
+<h3><u>Weighted Routing Policy</h3></u>
+-> Weighted Routing Policy lets you associate multiple resources with a single domain name or sub-domain name, and chose how much traffic is routed to each resource.
+-> This can be useful for variety of purpose, including load balancing and testing new versions of software.
+-> Weights can be assign any from 1 to 255.
+-> Weighted Routing Policy can be applied when there are multiple resource that perform the same function. For eg - Webserver serving the same website. 
+-> To configure weighted routing, you create records that have the same name and type for each of your resource.
+-> Amazon Route53 send traffic to a resource based on the weight that you assign to the record as a proportion of the total weight for all records in the group.
+-> For eg - suppose for www.tg.com has three resource record sets with weights of 1(20%), 1(20%) and 3(60%) [sum = 5].
+-> On average, Route53 selects each of the first two resource set one-fifth of the time, and returns the third resource record set three-fifth of the time.
+
+<h3><u>Geo-proximity Routing Policy</h3></u>     
+-> Use when you want to route traffic based on the location of your resources and optionally, shift traffic from resources in one location to resources in another.
+-> You can also optionally choose to route more traffic or less to a given resource by specifying a value, known as 'bias'. 
+-> A 'bias' expand or shrinks the size of geographic region from which traffic is routed to a resource. 
+
+<h3><u>Multivalue Answer Routing Policy</h3></u> 
+-> Use when you want Route53 to respond to DNS queries with upto eight healthy record selected at random.
+-> Multivalue answer routing lets you configure Amazon Route53 to return multiple values, such as IP addresses for your webservers, in response to DNS queries.
+-> You can specify multiple values for almost any record, but multiple value answer routing also lets you check the health of each resource, so Route53 returns only values for healthy resources.
+-> It is not substitute for a load balancer.
+-> But the ability to return multiple-health checkable IP addresses is a way to use DNS to improve availability and load balancing. 
+
+</h4>
+</pre></html>

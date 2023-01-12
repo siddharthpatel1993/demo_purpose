@@ -1,0 +1,75 @@
+<html><h2><u><center>Git Push</center></u>
+<h4><pre>
+1. The push term refers to upload or an act of transfer commits from local repository(local refs) content to a remote repository(remote refs). 
+2. Pushing is capable of overwriting changes; caution should be taken when pushing.
+<mark>3. If we don't specify the location of a repository, then it will push to default location at origin master.</mark>
+
+example -> $ git push option [Remote_URL branch_name refspec ...]
+
+<u>Push command supports many additional options. Some options are as follows under push tags.</u>
+
+<h3><u>Git Push Tags:-</u></h3>
+<u>repository:</u> The repository is the destination of a push operation. It can be either a URL or the name of the remote repository.
+
+<u>refspec:</u> It specifies the destination ref to update source object.
+
+<u>--all:</u> The word "all" stands for all branches. It pushes all branches.
+
+<u>--prune:</u> It removes the remote branches that do not have a local counterpart. Means, if you have a remote branch say demo, if this branch
+         does not exist locally, then it will be removed.
+		 
+<u>--mirror:</u> It is used to mirror the repository to the remote. Updated or newly created local refs will be pushed to the remote end.
+          It can be force updated on the remote end. The deleted refs will be removed from the remote end.
+		  
+<u>--dry-run:</u> Dry run tests the commands. It does all this except originally update the repository.
+
+<u>--tags:</u> It pushes all local tags.
+
+<u>--delete:</u> It deletes the specific branch.
+
+<u>-u:</u> It creates an upstream tracking connection. It is very useful if you are going to push the branch for the first time.
+
+<h3><u>Git Push Origin Master:-</u></h3>
+1. Git push origin master is a special command-line utility that specifies the remote branch and directory.
+2. When you have multiple branches and directory, then this command assists you in determining your main branch and repository.
+3. Generally, the term origin stands for the remote repository, and master is considered as the main branch.
+4. So, the entire statement "git push origin master" pushes the local content on the master branch of the remote location.
+
+example -> git push origin master
+
+<h3><u>Git Force Push:-</u></h3>
+The git force push allows you to push local repository to remote without dealing with conflicts. It is used as follows:
+
+Syntax -> $ git push remote branch -f
+or 
+           $ git push remote branch --force
+
+Example -> git push origin master -f
+
+Where, -f version is used as an abbreviation of force.
+       remote can be any remote location like GitHub, Subversion, or any other git service
+       branch is a particular branch name.
+
+Note: 1. We can also omit the branch in this command.
+
+Example -> git push remote -f
+
+2. We can omit both the remote and branch. 
+
+Example -> git push -f 
+
+3. When the remote and branch both are ommited, the default behaviour is determinded by push.default setting of git config.
+
+<h3><u>Git push -v/--verbose:-</u></h3>
+It pushes the repository and gives a detailed explanation about objects.
+
+For example -> $ git push -v or $ git push --verbose
+
+<h3><u>Delete a Remote Branch:-</u></h3>
+We can delete a remote branch using git push. It allows removing a remote branch from the command line. 
+
+Example -> git push origin --delete branch_name
+
+ 
+</pre></h4>
+</h2></html>

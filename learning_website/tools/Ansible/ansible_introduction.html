@@ -1,0 +1,58 @@
+<html><h3><u><center>Ansible Introduction</u></center></h3>
+
+<h4><pre><u>What is Ansible?</u>
+1. Ansible is an open-source IT engine that automates application deployment, cloud provisioning, intra service orchestration, and other IT tools.
+
+2. Ansible is easy to deploy because it does not use any <mark>agents </mark>or <mark>custom security </mark>infrastructure on the client-side, and <u>the work can be done by pushing modules to clients</u>. 
+   These modules are executed locally on the client-side, and the output is pushed back to the Ansible server.
+
+3. It can easily connect to clients using <mark>SSH-Keys</mark>, simplifying though the whole process. Client details, such as <mark>hostnames</mark> or <mark>IP addresses</mark> and <mark>SSH ports</mark>, are stored in the 
+   files, which are called inventory files. If you have created an inventory file and populated it, then Ansible can use it.
+
+4. Ansible uses the playbook to describe automation jobs, and playbook, which uses simple language, i.e., <mark>YAML</mark>. YAML is a human-readable data serialization language & commonly
+   used for configuration files, but it can be used in many applications where data is being stored.
+
+5. A significant advantage is that even the IT infrastructure support guys can read and understand the playbook and debug if needed.
+
+6. Ansible is designed for multi-tier deployment. Ansible does not manage one system at a time, and it models IT infrastructure by describing all of your systems are 
+   interrelated. Ansible is entirely agentless, which means Ansible works by connecting your nodes through <mark>SSH (by default)</mark>. Ansible gives the option to you if you want 
+   another method for the connection like <mark>Kerberos</mark>.
+
+7. Ansible pushes small programs after connecting to your nodes which are known as <mark>"Ansible Modules"</mark>. Ansible runs that module on your nodes and removes them when finished. 
+   Ansible manages the inventory in simple text files (These are the host's files). Ansible uses the host file where one can group the hosts and can control the actions on a 
+   specific group in the playbooks.
+
+<img src="picture/ansible_pic_1.JPG" alt="HTML5 Icon" style="width:550px;height:350px;">
+
+<u>Why Use Ansible?</u>
+Here are some important reasons for using Ansible, such as:
+
+1. Ansible is free to use by everyone.
+
+2. Ansible is agentless and doesn't require anything special to be installed on the server, but just one thing you should have python installed (python3 is preferable).
+
+3. Ansible is very consistent and lightweight, and no constraints regarding the operating system or underlying hardware are present.
+
+4. It is very secure due to its agentless capabilities and open <mark>SSH</mark> security features.
+
+5. Ansible does not need any special system administrator skills to install and use it.
+
+6. Ansible has a smooth learning curve determined by the comprehensive documentation and easy to learn structure and configuration.
+
+7. Its modularity regarding <mark>plugins, inventories, modules, and playbooks </mark>make Ansible perfect companion orchestrate large environments.
+
+<u>Ansible History - </u>
+Here are some essential points from the history of Ansible, such as:
+
+1. <mark>Michael DeHaan</mark> developed Ansible, and the Ansible project began in <mark>February 2012</mark>.
+
+2. The creator of <mark>Cobbler and Func</mark> is also the controller of the <mark>Fedora Unified</mark> network.
+
+3. <mark>RedHat</mark> acquired the Ansible tool in 2015.
+
+4. Ansible is included as part of the <mark>Fedora distribution</mark> of the Linux.
+
+5. Ansible is also available for <mark>RedHat Enterprise Linux, Debian, CentOS, Oracle Linux, and Scientific Linux </mark>via Extra Packages for Enterprise Linux <mark>(EPEL)</mark> and <mark>Ubuntu</mark> as 
+   well as for other operating systems.
+ </pre>
+</h4></html>

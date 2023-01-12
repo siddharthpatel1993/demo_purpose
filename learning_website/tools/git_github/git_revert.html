@@ -1,0 +1,54 @@
+<html><h2><u>Git Revert</u></h2>
+<h4><pre>
+1. Git revert command is used to apply revert operation or helps you to undo an existing commit. However, it is not a traditional undo alternative.
+2. It doesnot delete any data in this process. Instead, git creates a new commit with the included files reverted to their previous state.
+3. So, your version control history moves forward while the state of your file moves backward.
+4. If you want to remove something from history then git revert is a wrong chice.
+
+Example -> git revert
+
+<h3><u>Git Revert Options:-</u></h3>
+Git revert allows some additional operations like editing, no editing, cleanup and more. Let's understand these options briefly:
+
+<u>a. Commit:-</u> The commit option is used to revert a commit. To revert a commit, we need the commit reference id. The git log command can access it.
+
+Example -> git revert commit-ish
+
+<u>b. Edit:-</u> It is used to edit the commit message before reverting the commit. It is default option in git revert command.
+
+Example -> git revert -e commit-ish
+
+<mark>Note: Above mentioned Commit and Edit have the same functionality.</mark> 
+
+<u>c. parent-number (-m or --mainline):-</u> It is used to revert the merging. Generally, we cannot revert a merge because we do not know which side of the merge should be 
+                                      considered as the mainline. We can specify the parent number and allows revert to reverse the change relative to the specified 
+                                      parent.
+
+example -> git revert commit_reference -m 1
+
+<u>d. No edit (--no-edit):-</u> This option will not open a text editor. It will directly revert the last commit.
+
+example -> git revert -n commit-ish
+
+<u>e. Cleanup mode(--cleanup=mode):-</u> The cleanup option determines how to strip spaces and comments from the message.
+
+<u>f. No-commit (-n/--no-commit):-</u> Generally, the revert command commits by default. The no-commit option will not automatically commit. In addition,
+                               if this option is used, your index does not have to match the HEAD commit.
+
+
+<h3><u>Git Revert Merge:-</u></h3>
+1. A merge in git is a commit that has at least two parents. It brings together multiple lines of development.
+2. In a work-flow where features are developed in branches and then merged into a mainline, the merge commits would typically have two parents.
+
+Example -> git revert commit_reference -m 1  
+
+where, -m 1 is used for the first parent as the mainline.
+
+Note:- Merge commit has multiple parents. The revert needs additional information to decide which parent of the merge shall be considered as the mainline.
+       In such cases, the parameter -m is used.
+
+<h3><u>How to remove untracked files -</u></h3>
+git clean -n (dry run)
+git clean -f (forcefully)
+</pre></h4>
+</html>

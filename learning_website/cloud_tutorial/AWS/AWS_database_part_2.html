@@ -1,0 +1,93 @@
+<html><h2><u><center>Relational Database Services</center></u></h2>
+<h4><pre> 
+<h3><u>In an AWS fully managed relational DB engines service, where AWS is responsible for -</u></h3>
+-> Security and patching
+-> Automated Backup
+-> Software updates for the DB engine
+-> If selected, multi-AZ with synchronous replication between the active and standby DB instances (automatic failover if multi-AZ option was selected)
+-> By default, every DB has weekly maintenance window (max 35 days). It ranges from 1 day to 35 days.  
+
+<h3><u>Setting managed by the Users -</u></h3>
+-> Managing DB settings
+-> Creating relational database schema
+-> Database performance tuning
+
+<h3><u>Relational Database Engine Options</u></h3>
+1. MS SQL Server
+2. MySQL (Support 64 TB of DB)
+3. Oracle
+4. AWS Aurora (High Throughput)
+5. PostgreSQL (Highly Reliable and stable)
+6. MariaDB (MySQL compatible, 64 TB DB)
+
+<h3><u>There are two licensing options</u></h3>
+-> BYOL (Bring your own license) 
+-> License from AWS on hourly basis
+
+<h3><u>RDS Limits</u></h3>
+-> Upto 40 DB instances per account
+-> 10 of this 40 can be Oracle or MS-SQL server under license included model provide by AWS
+-> Under BYOL model, all 40 can be any DB engine you need.
+
+<h3><u>RDS instance storage</u></h3>
+-> Amazon RDS use EBS volumes (not instance store) for DB and logs storage
+1. General Purpose => Use for DB workloads with moderate I/O requirement
+Limits -> min - 20GB and max - 16384GB
+
+2. Provisional IOPS RDS Storage => Use for high performance OLTP workloads
+Limits -> min - 100GB and max - 16,384 GB  
+
+<h3><u>Templates Available in RDS</u></h3>
+1. Production (use defaults for high availability and fast, consistent performance)
+2. Dev/Test (This instance is intended for development use outside of a production environment)
+3. Free-Tier (use free-tier to develop new application, test existing application or gain hands on experience with Amazon RDS).
+
+<h3><u>DB Instance Size (Prod/ Dev)</u></h3>
+1. Standard Class (include m class)
+Max - 96 vCPU
+384 GB RAM
+EBS: 14000 Mbps
+
+2. Memory-Optimized Class (Includes r and x classes)
+Max - 768GB RAM
+96 vCPU
+EBS: 14000 Mbps
+
+3. Burstable Class (include t class)
+Max - 8 vCPU
+32GB RAM
+EBS: 1500 Mbps
+
+<h3><u>What is Multi-AZ in RDS?</u></h3>
+-> You can select Multi-AZ option during RDS DB instance launch.
+-> RDS service creates a standby instances in different AZ in the same region and configure "Synchronous Replication" between the primary and standby.
+-> You can not Read/Write to the standby RDS DB instances.
+-> You cannot select which AZ in the Region will be chosen to create the standby DB instance.
+-> You can however view, which AZ is selected after the standby is created.
+-> Depending on the instance class, it may take 1 to few minutes to failover to the standby instance.
+-> AWS recommends the use of provisioned IOPS instances for Multi-AZ RDS instances. 
+
+<h3><u>When Multi-AZ RDS Failover Triggers</u></h3>
+1. In case of failure of Primary DB instance 
+2. In case of AZ failure
+3. Loss of network connectivity to primary DB
+4. Loss of primary EC2 instance failure
+5. EBS failure of primary DB instance
+6. The Primary DB instance settings is changed
+7. Patching the OS of the DB instance.
+8. Manual Failover (in case of Rebooting) 
+
+<h3><u>Multi-AZ RDS Failover Consequences</u></h3>
+1. During Failover, the CNAME (Canonical Name Record) of the RDS DB instance is updated to map to the standby IP address.
+2. It is recommended to use the endpoint (CNAME) to reference your DB instances and not its IP address.
+3. The CNAME does not change, because the RDS endpoint does not change.
+4. RDS endpoint does not change by selecting Multi-AZ option. However, the primary and standby instances will have different IP addresses, as they are in different AZs.
+5. It is always recommended that you do not use the IP address to point RDS instances, always use endpoint.
+6. By using endpoint, there will be no change whenever a failover happens. 
+
+<h3><u>When we do Manual Failover?</u></h3>
+-> In case of rebooting
+-> This is by selecting the "Reboot with failover" reboot options on the primary RDS DB instances.
+-> A DB instance reboot is required for changes to take effect when you change the DB parameter/settings group on when you change a static DB parameter.   
+</h4>
+</pre></html>

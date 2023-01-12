@@ -1,0 +1,80 @@
+<html><h2><u><center>Relational Database Services</center></u></h2>
+<h4><pre> 
+-> Whenever failover occurs, AWS RDS sends SNS notification.
+-> You can use API calls to find out the RDS events occurred in the last 14 days. 
+-> Even, you can use CLI to view last 14 days events.
+-> Using AWS console, you can view only last one day events.
+-> In case of OS patching, System upgrades, DB scaling these things happen on standby first and then on primary to avoid outage.  
+
+<h3><u>RDS Multi-AZ Deployment Maintenance</u></h3>
+-> Firstly, perform maintenance on standby.
+-> Now, convert standby into primary, so that maintenance can be done on primary (currently)
+-> You can manually upgrade a DB instance to a supported DB engine version from AWS console as follows -
+   - ( RDS -> DB instance -> Modify DB -> Set DB Engine version)
+-> By default, change will take effect during the next maintenance window. 
+-> Or, you can force an immediate upgrade if you want.
+-> In multi-AZ, version upgrade will be conducted on both primary and standby at the same time, which will cause an outage.
+-> Do it during maintenance window.
+
+<h3><u>Backup of RDS</u></h3>
+-> There are two methods to backup and restore your RDS DB instances
+1. AWS RDS Automated Backup
+2. User Initiated Manual Backup
+
+-> Either you can take backup of entire DB instance or just the DB.
+-> You can create a storage volume snapshots of your entire DB instances.
+-> Automated Backups by AWS, backup your DB data to multiple AZ to provide for data durability.
+   (Select -> Automated Backup in AWS console)
+-> Stored in Amazon S3
+-> Multi-AZ automated backups will be taken from the standby instance.
+-> The DB instance must be in "ACTIVE" state for automated backup.
+-> RDS automatically backup the DB instances daily, by creating a storage volume snapshot of your DB instance (fully daily snapshot) including the DB transaction logs.
+-> It will store the backup data in some AZ, by default it contains the backup of 7 days. You can modify the retention period from 1 to 35 days.   
+-> You can decide, when you would like to take backup (window).
+-> No additional charge for RDS backing up your DB instances.
+-> For Multi-AZ deployment, backups are taken from the standby DB instance (True for MariaDB, MySQL, Oracle, PostgreSQL)
+-> Automated backup are deleted when you delete your RDS DB instance.
+-> An outage occurs if you change the backup retention period from zero to non-zero value or the other way around.
+-> Retention period of automated backup is 7 days (by default) via AWS console.
+-> AWS Aurora is an exception, its default is one day.
+-> Via CLI or API, 1 day by default for all.
+-> You can increase it upto 35 days.
+-> If you don't want backup, put 'zero' in retention period.
+
+-> In case of manual snapshot, point-in-time recovery is not possible.
+-> Manual Snapshot is also stored in S3.
+-> They are not deleted automatically, if you delete RDS instance.
+-> Take a final snapshot before deleting your RDS DB instance.
+-> You can share manual snapshot directly with other AWS account.
+-> When you restore a DB instance, only the default DB parameters and security groups are associated with the restored instance.
+-> You cannot restore a DB snapshot into an existing DB instance, rather it has to create a new DB instance. It has new endpoint.
+-> Restoring from a backup or a DB snapshot changes the RDS instance endpoint.
+-> At the time of restoring, you can change the storage type (General purpose or provisioned)
+
+<h3><u>Encryption in RDS</u></h3>
+-> You cannot encrypt an existing unencrypted DB instance.
+-> TO do that, you need to -
+   - Create a new, encrypted instance and migrate your data to it (From unencrypted to encrypted)
+   - You can restore from a Backup/snapshot into a new encrypted RDS instance.
+-> RDS supports encryption-at-rest for all DB engines using KMS.
+-> What actually encrypted when data at rest.
+1. All its snapshots
+2. Backups of DB (S3 storage)
+3. Data on EBS volumes
+4. Read Replica created from the snapshot.
+
+<h3><u>Some Points related to RDS Billing</h3></u>
+-> No upfront cost.
+-> You have to pay only for (this increases by increasing DB backups retention period) {in stand-alone case}
+   1. DB instance hours (partial hour charged as full hour)
+   2. Storage GB/month
+   3. Internet Data transfer
+   4. Backup storage (i.e. S3)
+-> AWS also charge for {in multi-AZ case}
+   1.  Multi-AZ DB hours
+   2. Provisioned storage (Multi-AZ)
+   3. Double write I/O
+   4. You are not charged for DB data transfer during replication from primary to standby.
+
+</h4>
+</pre></html>

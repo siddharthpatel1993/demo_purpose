@@ -1,0 +1,83 @@
+<html><u><center><h2>Persistent Volume</h2></center></u>
+<pre><h4>
+-> In a typical IT environment, storage is managed by the storage/system administrator. The end user will just get instructions to use the storage, but does not have to worry
+   about the underlying storage management.
+-> In the containerized world, we would like to follow similar rules, but it becomes challenging, given the many volume types we have seen earlier Kubernetes resolve
+   this problem with the Persistent Volume (PV) subsystem.
+-> A Persistent Volume is a cluster-wide resource that you can use to store data in a way that it persuits beyond the lifetime of a pod.
+-> The PV is not backed by locally attached storage on a worker node, but by network storage system such as EBS or nfs or a distributed file system like Corph.
+-> K8s provides APIs for users and administrator to manage and consume storage to manage volume, it uses the Persistent Volume API resource type and to consume it,
+   uses the PersistentVolume-claim API resource type. 
+
+PersistentVolumeClaim
+
+-> In order to use a PV you need to claim it first, using a Persistent Volume Claim(PVC).
+-> The PVC request a PV with your desired specification (size, access, modes, speed etc.) from Kubernetes and once a suitable persistent volume is found, it is bound to a PersistentVolumeClaim.
+-> After a successful bound to a pod, you can mount it as a volume.
+-> Once a user finishes its works, the attached Persistent volume can be released. The underlying PV can be reclaimed and recycled for future usage.
+
+AWS EBS
+-> An AWS EBS volume mounts an AWS EBS volume into your pod. Unlike emptyDir, which is erased when a pod is removed, the contents of an EBS volume are preserved and the volume is merely unmounted.
+
+There are some restrictions -
+1. The nodes on which pods are running must be AWS EC2 instances.
+2. Those instances need to be in the same region and Availability Zone as the EBS volume.
+3. EBS only supports a single EC2 instance mounting a volume.   
+
+=================================
+PERSISTENT VOLUME
+================================
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: myebsvol
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  awsElasticBlockStore:
+    volumeID:           # YAHAN APNI EBS VOLUME ID DAALO
+    fsType: ext4
+============
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: myebsvolclaim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+==================================================================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pvdeploy
+spec:
+  replicas: 1
+  selector:      # tells the controller which pods to watch/belong to
+    matchLabels:
+     app: mypv
+  template:
+    metadata:
+      labels:
+        app: mypv
+    spec:
+      containers:
+      - name: shell
+        image: centos
+        command: ["bin/bash", "-c", "sleep 10000"]
+        volumeMounts:
+        - name: mypd
+          mountPath: "/tmp/persistent"
+      volumes:
+        - name: mypd
+          persistentVolumeClaim:
+            claimName: myebsvolclaim
+                             
+   
+</pre></h4>
+</html>

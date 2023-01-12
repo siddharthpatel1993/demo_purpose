@@ -1,0 +1,134 @@
+<html><h2><u><center>Version Control System</center></u></h2>
+<h4><pre>
+1. A version control system is a software that tracks changes to a file or set of files over time by making a version snapshot so that you can recall specific versions later. 
+   It allows you to work together with other programmers.
+
+2. The version control system is a collection of software tools that help a team to manage changes in a source code. It uses a special kind of database to keep track of every 
+   modification to the code.
+
+3. Developers can compare earlier versions of the code with the older version to fix the mistakes.
+
+<h3><u>Type of Version Control System :-</h3></u>
+1. Localized Version Control System (LVCs)
+2. Centralized Version Control System (CVCs)
+3. Distributed Version Control System (DVCs)
+
+<h3><u>Localized Version control System (LVCs):-</u></h3>
+The localized version control system is a common approach because of its simplicity. But this approach leads to a higher chance of error. In this approach, you may forget 
+which directory you're in and accidently write to the wrong file or copy over files you don't want to.
+      
+	To deal with this issue, programmers developed local VCSs that had a simple database. Such databases kept all the changes to files under revision control. A local
+version control system keeps local copies of the files. The major drawback of Local VCS is that it has single point of failure. 
+
+<h3><u>Centralized Version control System (CVCs):-</u></h3>
+The developers needed to collaborate with other developers on other system. The localized version control system failed in this case. To deal with this problem, 
+centralized version control systems were developed.
+
+These systems have single server that contains the versioned files, and some clients to check out files from a central place.
+
+Centralized Version Control Systems have many benefits, especially over local VCSs.
+
+1. Everyone on the system has information about the work what others are doing on the project.
+2. Administrators have control over other developers.
+3. It is easier to deal with a centralized version control system than a localized version control system.
+4. A local version control system facilities with a server software component with stores and manages the different versions of the files.
+
+<mark>It also has the same drawback as in local control version system that it also has a single point of failure.</mark>
+
+<h3><u>Distributed Version Control System</u></h3>
+
+Centralized Version Control System uses a central server to store all the database and team collaboration. But due to single point failure, which means the failure of the 
+central server, developers do not prefer it. Next, the Distributed Version Control System is developed.
+
+In a Distributed Version Control System (such as Git, Mercurial, Bazar or Darcs), the user has a local copy of a repository. So, the clients don't just check out latest 
+snapshot of the files even they can fully mirror the repository. The local repository contains all the files and metadata present in the central repository.
+
+DVCS allows automatic management of branching and merging. It speeds up of most operations except pushing and pulling. DVCS enhances the ability to work offline and does 
+not rely on a single location for backups. If any server stops and other systems were collaborating via it, then any of the client repositories could be restored by that 
+server. Every checkout is a full backup of all the data.
+
+These systems do not necessarilly depend on a central server to store all the versions of a project file.
+
+<h3><u>Difference between Centralized Version Control System and Distributed Version Control System</u></h3>
+
+Centralized Version Control Systems are systems that use clinet/server architecture. In a Centralized Version Control System, one or more client systems are directly 
+connected to a central server. Contrarily the Distributed Version Control Systems that use peer-to-peer architecture.
+
+There are many benefits and drawbacks of using both the version control systems. Let's have a look at some signficant differences between Centralized and Distributed 
+version control system.
+
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<table>
+  <tr>
+        <th>Sr. No.</th>
+    <th>Centralized Version Control System</th>
+    <th>Distributed Version Control System</th>
+    
+  </tr>
+  <tr>
+    <td>1. </td>
+    <td>In CVCS, the repository is placed at one place and delivers information to many clients.</td>
+    <td>In DVCS, every user has a local copy of the repository in place of the central repository on the server-side.</td>
+
+  </tr>
+  <tr>
+    <td>2. </td>
+    <td>It is based on the client-server approach.</td>
+    <td>It is based on the client-server approach.</td>
+
+  </tr>
+  <tr>
+    <td>3. </td>
+    <td>It is the most straight forward system based on the concept of the central repository.</td>
+    <td>It is flexible and has emerged with the concept that everyone has their repository.</td>
+ </tr>
+   <tr>
+    <td>4. </td>
+    <td>In CVCS, the server provides the latest code to all the client across the globe.</td>
+    <td>In DVCS, every user can check out the snapshot of the code, and they can fully mirror the central repository.</td>
+ </tr>
+   <tr>
+    <td>5. </td>
+    <td>CVCS is easy to administrate and has additional control over users and access by its server from one place.</td>
+    <td>DVCS is fast comparing to CVCS as you don't have to interact with the central server for every command.</td>
+ </tr>
+   <tr>
+    <td>6. </td>
+    <td>The popular tools of CVCS are SVN (Subversion) and CVS.</td>
+    <td>The popular tools of DVCS are Git and Mercurial.</td>
+ </tr>
+   <tr>
+    <td>7. </td>
+    <td>CVCS is easy to understand for beginners.</td>
+    <td>DVCS has some complex process for beginners.</td>
+ </tr>
+   <tr>
+    <td>8. </td>
+    <td>If the server fails, no system can access data from another system.</td>
+    <td>If any server fails and other systems were collaborating via it, that server can restore any of the client repositories.</td>
+ </tr>
+</table>
+
+</body>
+  
+</h4></pre></html>

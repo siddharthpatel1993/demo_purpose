@@ -1,0 +1,88 @@
+<html><h2><u><center>Elastic Load Balancer</center></u></h2>
+<h4><pre>
+-> Load Balancer distributes the web traffic to the available server.
+-> Load Balancing refers to the efficient distribution of incoming traffic across a group of backend servers.
+-> An internet facing load balancer has a publicly resolvable DNS name.
+-> Domain names for content on the EC2 instances served by the ELB, is resolved by the internet DNS servers to the ELB DNS name (and hence IP address). 
+-> This is how traffic from internet is directed to the ELB front end.
+-> Classic Load Balancer service support 
+   - HTTP, HTTPS, TCP, SSL protocols 
+   - protocols ports supported are 1-65535 
+   - It support IPv4, IPv6 and Dual Stack.
+-> Application Load Balancer distributes incoming application traffic across multiple targets such as EC2 instances in multiple availability Zone.
+   - This increase the availability of your application.
+-> Network Load Balancer has ability to handle volatile workloads and scale to millions of request per seconds.
+
+<h3><u>Listeners in ELB</u></h3>
+-> An ELB listener, is the process that checks for connection request.
+-> You can configure the protocol/port on which your ELB listener listen for connection request.
+-> Frontend listeners check for traffic from the client to the listener.
+-> Backend listeners are configured with protocol/port to check for traffic from the ELB to the EC2 instances.
+-> It may take sometime for the registration of the EC2 instances under the ELB to complete because ELB first do the health check and ensure EC2 instance is working good.
+-> Registered EC2 instances are those that are defined under ELB.
+-> ELB has "Nothing" to do with the outbound traffic that is initiated/generated from the registered EC2 instances destined to the internet, or to any other instances within 
+   VPC.
+-> ELB only has to do with the inbound traffic destined to the EC2 registered instances (as the destination) and the respective return traffic.
+-> You start to be charged hourly (also for partial hours) once your ELB is active.
+-> If you do not want to be charged as you do not need the ELB anymore, you can delete it.
+-> Before you delete the ELB, it is recommended that you point the Route 53 to somewhere else other than the ELB.
+-> Deleting the ELB does not affect, or delete the EC2 instance registered with it.
+-> ELB forwards traffic to "eth0" of your registered instances.
+-> In case the EC2 registered instances has multiple IP addresses on eth0, ELB will route the traffic to its primary IP address.
+
+-> Elastic Load Balancer supports IPv4 address only, in a VPC.
+-> To ensure that the ELB service can scale ELB Nodes in each AZ, ensure that the subnet defined for the Load Balancer is at least /27 in size, and has at least 8 available IP 
+   addresses the ELB nodes can use to scale.
+-> For Fault Tolerance it is recommended that you distribute your registered EC2 instances across multiple AZ within the VPC region.
+-> If possible, try to allocate same number of registered instances in each AZ.
+-> The load balancer also monitors the health of its registered instances and ensures that it routes traffic only to healthy instances.
+-> A healthy instances shows as "Healthy" under the ELB.
+-> When the ELB detects an unhealthy instance, it stops routing traffic to that instance.
+-> An unhealthy instance shows as "unhealthy" under the ELB.
+-> By default, AWS console uses ping HTTP (port 80) for health check.
+-> Registered instances must respond with HTTP "200 OK" message within the timeout period, else, it will be considered as "Unhealthy".
+-> AWS API uses ping TCP (port 80) for health check.
+-> Response Time-Out is 5 seconds (range is 2-60 seconds).
+-> Health Check Interval
+   - Period of time between health checks is default 30 (range is 5 to 300 seconds).
+-> Unhealthy Threshold
+   - Number of consecutive failed health check that should occur before the instance is declared unhealthy. (Range is 2-10, Default is 2).
+-> Healthy Threshold
+   - Number of consecutive successful health checks that must occur before the instance considered unhealthy. (Range is 2-10, default is 10).   
+   
+-> By default, the ELB distributes traffic evenly between the AZ it is defined in, without consideration to the number of registered EC2 instances in each AZ.    
+
+<h3><u>Cross Zone Load Balancing</u></h3>
+-> Disabled by default.
+-> When enabled, the ELB will distribute traffic evenly between registered EC2 instances.
+-> If you have 7 EC2 instances in one AZ, and 3 in another AZ, and you enabled Cross Zone Load Balancing, each registered EC2 instance will be getting around the same amount 
+   of traffic load from the ELB.
+-> ELB is region specific, So all registered EC2 instances must be in same region, but can be in different AZ's.  
+-> To define your ELB in an AZ, you can select one subnet in that AZ. Subnet can be Public or Private.
+-> Only one subnet can be defined for the ELB in an AZ.
+-> If you try and select another one in the same AZ, it will replace the former one.
+-> If you register instance in an AZ with ELB, but do not define a subnet in that AZ for the ELB. These instances will not receive traffic from the ELB.
+-> ELB should always be accessed using DNS and not IP.
+
+-> An ELB can be internet facing or internal ELB.
+-> Internet Facing 
+   - ELB nodes will have public IP address
+   - DNS will resolve the ELB DNS name to these IP address.
+   - It routes traffic to the private IP address of your registered EC2 instances.
+   - You need one 'public' subnet in each AZ where the internet facing ELB will be defined, such that the ELB will be able to route internet traffic.
+-> Format of the public ELB DNS name of internet facing ELB -
+   - name-1234567890.region.elb.amazonaws.com
+-> Format for internal ELB
+   - internal-name.123456789.region.elb.amazon.aws.com
+-> An ELB listener is the process to checks for connection request.
+-> Each Network Load Balancer needs at least one listener to accept traffic.
+-> You must assign a Security Group to your ELB. This will control traffic that can reach your ELB front end listeners.
+-> Target Group -
+   - Logical Grouping of targets behind the load balancer.
+   - Target Groups can be exist independently from the load Balancer.
+   - Target Group can be associated with an autoscaling group.
+   - Target Group can contain upto 200 targets.    
+   
+   
+</h4>
+</pre></html>

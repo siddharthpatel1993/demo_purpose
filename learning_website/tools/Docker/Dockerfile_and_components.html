@@ -1,0 +1,111 @@
+<html><h2><center><u>Dockerfile and it's components</u></center></h2>
+<pre><h4>
+<h2><u>Dockerfile -</u></h2>
+-> Dockerfile is basically a text file which contains a series of commands or instructions.
+-> These instructions are executed in the order in which they are written.
+-> Execution of these instructions takes place on a base image.
+-> On building the Dockerfile, the successive actions form a new image from the base parent image.
+-> Automation of Docker image creation.
+
+<h2><u>Dockerfile Commands -</u></h2>
+<u>FROM</u> -> 
+For base image. This command must be on top of the dockerfile.
+
+<u>RUN</u> -> 
+To execute commands, it will create a layer in image.
+
+<u>MAINTAINER</u> -> 
+Author/ Owner/ Description
+
+<u>COPY</u> -> 
+1. It lets you copy files from local system (docker VM) to Docker image itself. 
+2. We need to provide source, destination (we can't download files from internet and any remote repo). [Note 1]
+			  
+<u>ADD</u> -> 
+1. Simlar to COPY but, it provides a feature to download files from internet i.e. you can use URL instead of a local file/ directory, and also extract tar file from the source directly into the destination. [Note 1]
+
+<u>EXPOSE</u> -> 
+1. The EXPOSE instruction expose a port, the protocol can be UDP or TCP associated with the indicated port, default is TCP with no specification. 
+2. The EXPOSE won't be able to map the ports on the host machine. 
+3. Regardless of the EXPOSE settings, EXPOSE port can be override using -p flag while staring the container.
+4. To expose ports such as 8080 for tomcat, port 80 for nginx etc.
+
+<u>CMD</u> ->
+1. The CMD command specifices the instruction that is to be executed when a Docker container starts.
+2. The main puprose of the CMD command is to launch the software required in a container. For example, the user may need to run an executable .exe file or a BASH terminal as soon as the container starts,
+   the CMD command can be used to handle such requests.
+3. CMD can be configured in two forms:
+	a. Exec Form -
+		CMD ["executable", "param1", "param2"]
+        b. Shell Form -
+                 CMD command param1 param2
+4. There can be only one CMD instructiom in Dockerfile. If you list more than one CMD instructions, then only the last CMD will take effect.  
+
+<u>ENTRYPOINT</u> -> 
+1. Similar to CMD, but has higher priority over CMD, first commands will be executed by ENTRYPOINT only. The ENTRYPOINT instruction make your container run as an executable.
+2. ENTRYPOINT can be configured in two forms:
+	a. Exec Form - 
+		ENTRYPOINT ["executable", "param1", "param2"]
+        b. Shell Form -
+                 ENTRYPOINT command param1 param2
+
+<u>ENV</u> - 
+1. The ENV instruction in Dockerfile sets the environmental variables for your container when you start. 
+2. The default value can be overridden by passing --env <key>=<value> when you start the container.
+
+<u>WORKDIR</u> - 
+1. The WORKDIR directive in dockerfile defines the working directory for the rest of the instructions in the Dockerfile. 
+2. The WORKDIR instruction won't create a new layer in the image but will add metadata to the image config. 
+3. If the WORKDIR doesn't exist, it will be created even if it's not used in any subsequent Dockerfile instruction. 
+4. You can have multiple WORKDIR in same Dockerfile. 
+5. If a relative path is provided, it will be relative to the previous WORKDIR instruction. 
+6. If no WORKDIR is specified in the Dockerfile then the default path is /. 
+7. The WORKDIR instruction can resolve environment variables previously set in Dockerfile using ENV.  
+
+<u>ONBUILD</u> - 
+1. Docker ONBUILD command instruction is used to specify the commands that runs when the new docker image is used as a base image for another image (child image).
+2. We can use this ONBUILD instruction where you need a static base image with a dynamic config value that changes in a new image or we can use in a situation where a new image is depend on previous image. 
+
+<u>ARG</u> -
+1. The ARG directive in Dockerfile defines the parameter name and defines its default value. 
+2. This default value can be overridden by the --build-arg parameter_name=value in the build command docker build.
+3. The build parameters have the same effect as ENV, which is to set the environment variables.
+4. The difference is that the environemt variables of the build environemt set by ARG will not exist in the future when the container is running.
+5. But doesn't use ARG to save passwords and the like, because docker history can still see the values.
+
+<u>VOLUME</u> -
+1. A volume is a persistent data stored in /var/lib/docker/volumes/... location.
+2. There are three way you can create volumes = -
+   a. It can be created from dockerfile.
+   b. It can created at run time means while creating the container from "docker run" command.
+   c. And the last option is from "docker volume create". 
+
+<u>LABEL</u> -
+1. You can add lables to your image to help organize images by project, record licensing information, to aid in automation, or for the other reasons.
+2. For each label, add a line beginning with LABEL and with one or more key-value pairs.
+3. The LABEL instruction adds metadata to an image.
+
+<u>USER</u>-
+1. USER is the identity of the commands such as RUN, CMD and ENTRYPOINT.
+2. USER helps you switch to the specified user. This user must be pre-established, otherwise it cannot be switched.
+
+Note:
+1. COPY and ADD are both Dockerfile instructions that serve similar purposes. They let you copy files from specific location into a Docker image.
+2. You can name your stages, by adding an AS to the FROM instruction. By default, the stages are not named, and you can refer to them by their integer number , starting with 0 
+   for the first FROM instruction. You are not limited to copying from stages you created earlier in your Dockerfile, you can use the COPY --from instruction to copy from a 
+   separate image, either using the local image name, a tag available locally or on a Docker registry.
+3. If you mention two entrypoint in the dockerfile, the second one will get executed and the first one will get ignored.
+4. If an image has an entrypoint and if you pass an argument in it, while running container it won't override the existing ENTRYPOINT you should use --entrypoint flag when running container.
+5. Do not confuse RUN with CMD, RUN actually runs a command and commits the result. CMD does not execute anything at build time, but specifies the intended command for the image. 
+
+<h2><u>Example of the Dockerfile</u></h2>
+FROM ubuntu
+ENV DEBIAN_FRONTEND=noninteractive
+MAINTAINER sidd sidd@gmail.com
+RUN apt-get update
+RUN apt-get -y install apache2
+RUN echo "Hello Apache server on ubuntu Docker" > /var/www/html/index.html
+EXPOSE 80
+CMD /usr/sbin/apache2ctl -D FOREGROUND
+</h4></pre>
+</html>

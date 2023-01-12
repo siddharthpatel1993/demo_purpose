@@ -1,0 +1,141 @@
+<html><h2><center><u>Docker Compose</u></center>
+<h3><u>What is Docker Compose?</u></h3>
+<h4><pre>
+1. Docker compose is a tool built by docker to ease the task to creating and configring multiple containers in a development environment, counter-part of docker-compose for 
+   production environment is Docker Swarm. 
+2. Docker compose takes as input a YAML configuration file and creates the resources (image, containers, networks, volumes etc) by communicating with the docker daemon through 
+   docker API.
+3. It is important to note that Docker compose doesn't explicitly build Docker images. The job of building images is done by Docker through the Dockerfile.
+
+<h3><u>The Docker-compose.yml file</u></h3>
+1. It won't be awefully worng to say that a Docker compose file is to Docker compose, what a Dockerfile is to Docker.
+
+2. Inside the Docker compose file, lies all the instructions that Docker compose follows when managing the containers. Here, you define the services which end up being
+   containers. You also define the networks and volumes that the services depend on. 
+
+3. You can have services for the backend, frontend, database and message queues in the web app. These services will need specific dependencies. Dependencies such as the 
+network, ports, storage for optimal operation. Everything needed for the entire application will be defined in the Docker Compose file. 
+   
+4. There'll be a lot of key-value pairings or directives in your file. The top-level ones are:
+   I. Version
+  II. Services
+ III. Network
+  IV. Volumes
+   
+However, we usually mention only the version and services, as you can define the other two in services directive.
+
+<u>I. Version :-</u>
+1. When writing your file, you'll define the version first. As at the time of the writing, Docker Compose only has versions 1,2 and 3.
+
+2. You can specify the version to use for Docker compose in the file as seen below:
+   - Version: "3"
+   - Version: "2.4"
+   - Version: "1.0"
+
+<u>II. Services:-</u>
+The service key is the most important key in a Docker Compose file. Here, you specify the containers you want to create. There are lot of options and tons of combinations for
+configuring containers in this section of the file. These are some options you can denfine under the services key:
+
+a. Image
+b. Container_name
+c. Restart
+d. Depends_on
+e. Environment
+f. Ports
+g. Volumes
+h. Networks
+i. Entrypoint
+
+<u>a. Images</u>
+1. This option defines what image as service uses. It uses the same convention as you use when pulling an image from Dockerhub in a Dockerfile.
+
+Example-> image: postgres:latest
+
+2. However, there is no restriction to using Dockerhub files alone. You can also build images from your machine through your Docker Compose file, using a Dockerfile.
+   You can use the "build", "context" and "dockerfile" directives to do this.
+
+Example -> build:
+		context: .
+		dockerfile: Dockerfile
+			 
+3. "Context" should contain the path to the directory with the Dockerfile. Then "dockerfile" contains the name of the Dockerfile to be used. It is conventional to always
+   to always name your Dockerfiles as "Dockerfile", but this gives an opportunity to use something different.
+   
+<u>b. Container_name:</u>
+1. Docker assigns random names to containers. But you may have desire to have customized names for the containers. 
+2. With the "container_name" key, you can give specific names to the containers, instead of Dockers randomly generated names.
+
+Example -> container_name: pythonapptest
+
+3. However, thers is one thing you should be careful about, don't give the same name to multiple services. Container name have to be unique; doing so will cause the services 
+to fail.
+
+<u>c. Restart</u>
+1. There are many reasons for the container to fail, so the restart key tells the container to wake or not.
+2. You can different options like no, always, on-failure and unless-stopped. These options imply that a container will never restart, will always restart, only restart on 
+failure or only when stopped.
+
+Example -> restart: always
+
+<u>d. Depends_on:</u>
+1. Services run in isolation. But practically, services can't do much in isolation. There needs to be dependency on other services.
+2. For example, the backend service of the web app will depend on databases, caching services etc.
+3. At the "depends_on" key, you can add the dependencies.
+
+Example ->       depends_on:
+			- db
+4. Doing this means that Docker compose will start those services before the current one. However, it doesn't ensure that those services are ready to use. The only guarantee 
+is that the containers will start.
+   
+<u>e. Environment:</u>
+1. Applications depend on certain variables. For security and ease of use, you extract them from the code and set them as environment variables. 
+2. Example of such variables are API keys, passwords, and so on.
+3. This key only works if there is no "build" directive in that service. Hence, create the image beforehand.
+
+Example -> environment:
+		API-KEY: 'the-api-key'
+		CONFIG: 'development'
+		SESSION_SECRET: 'the-secret'
+				
+4. If you intend to use the "build" directive regardless, you'll need to define the environment variables in an "args" directive. 
+5. The "args" directive is a sub-directive of "build".
+
+Example -> build:
+		context: .
+		args:
+			api-key: 'the-api-key'
+			config: 'development'
+			session_secret: 'the-secret'
+
+<u>f. Ports:</u>
+1. No container works in isolation despite running separately from the others. To provide a link to communicate with the "outside world", you need to map ports.
+2. You map the Docker containers's port to the actual host port.
+3. From Docker, you may have come across the "-p" argument that is used to map ports. The port directive works similar to the "-p" argument.
+
+Example -> ports:
+		- "5000:8000"
+				
+<u>g. Volumes:</u>
+1. Docker containers have no means of storing data persistently, so they lose data when they start.
+2. With Volumes, you can work around this. Volumes makes it possible to create a persistent data storage. 
+3. It does this by mounting a directory from the docker host into the docker container's directory.
+
+Example -> volumes:
+		- host-dir:/test/directory
+				
+<u>h. Network:</u>
+1. Networks can also be created in services. With the networks key, you can setup the networking for individual services.
+2. Here, you can setup the driver the network uses, if it allows IPv6, etc.
+
+Example -> networks:
+		- default
+				
+<u>i. Entrypoint:</u>
+1. When you start a container, you often must run certain commands. For example, if the service is web applicaiton, you must start the server.
+2. The entrypoint key lets you do this. Entrypoint works like ENTRYPOINT in Dockerfile.
+3. The only difference in this case is that whatever you define here overrides the ENTRYPOINT configurations in the dockerfile.
+
+Example -> entrypoint: flask run 
+					
+</h4></pre>
+</h2></html>

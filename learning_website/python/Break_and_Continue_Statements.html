@@ -1,0 +1,61 @@
+<html><h2><u><center>Break & Continue Statements</u></center></h2>
+<h4><pre>
+“Break and continue statements are used to alter the flow or normal working of a loop, that could be either a “for loop” or “while loop”.
+
+<u>Defining break statement,</u> break statement alters the normal functionality of the loops by terminating or exiting the loop containing it. The compiler then moves on to the code
+that is placed after the body of the loop. 
+
+<u>Example 1 with while loop</u>
+
+i = 1
+while i < 6:
+  print(i)
+  if i == 3:
+    break
+  i += 1
+
+<u>Example 2 with for loop</u>
+
+
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x)
+  if x == "banana":
+    break  
+
+<u>Continue statement </u>also alters the flow of a normal working loop but unlike the break statement, it takes the compiler to the start of the code that has already been executed 
+before the statement but is inside the loop boundary. All the code written after the continue statement is skipped but it is worth noting that the continue statement works
+only for a single iteration. Unless in situations where it's written with decision statements such as if, else, etc., in those situations the continue statement will totally 
+be dependent upon the condition of the decision statement.
+
+<u>Example 1 with While loop</u>
+
+i = 0
+while i < 6:
+  i += 1
+  if i == 3:
+    continue
+  print(i)
+
+<u>Example 2 with for loop</u>  
+
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  if x == "banana":
+    continue
+  print(x)
+
+<mark><u>Where and when can these statements come in handy:</u>
+When you are working with a big project, there might occur a situation where you only need to use the loop partially without adding new or removing already existing lines of 
+codes. You can easily apply the break statement in your code so that you can partially run it without any sort of error.
+Or in another situation let’s suppose you are working with while loop printing some lines on the screen and you want to skip an iteration in between others, then you can 
+write the continue statement using an “if” statement that matches your need so that you can skip the specific iteration.</mark>
+
+<u>The pass Statement</u>
+for loops cannot be empty, but for some reason you have a for loop with no content, put in the pass statement to avoid getting an error.
+
+Example
+for x in [0, 1, 2]:
+  pass
+
+</pre></h4></html>

@@ -1,0 +1,17 @@
+From the above output, we are changing our directory to 'certs' from 'cups.' So, we have provided the whole path "/run/cups/certs" starting from the root (/). This is called an absolute path.
+
+Columns above indicate specific things:
+
+Column 1 indicates information regarding file permission.
+Column 2 indicates the number of links to the file.
+Column 3 & 4 indicates the owner and group information.
+Column 5 indicayes size of the file in bytes.
+Column 6 shows th date and time on which the file was recently modified.
+Column 7 shows the file or directory name.
+
+================
+Linux File System
+https://www.javatpoint.com/linux-rename
+Pending - https://www.javatpoint.com/rename-folder-in-linux
+=============
+https://www.javatpoint.com/linux-add-user-to-group

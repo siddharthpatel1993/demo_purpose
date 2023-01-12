@@ -1,0 +1,566 @@
+<html><h2><u><center>All about Linux User</center></u></h2>
+<h4><pre>
+-> If more than one person use a single system, then everyone may have their own user account. Here, it will be helpful to know the user account details.
+
+a. whoami => It tells you about the system's username.
+b. who => The who command gives the information about the users logged on to the system.
+c. who am i => This command displays the information about the current user only.
+d. w => This command tells about the users who are logged in and what are they doing.
+e. id => This command tells about your user id, primary group id, and a list of groups that belongs to you.
+
+==================
+Linux Create User | Linux Add user | Linux user add command
+The Linux server allows us to create more than one user after installation. Linux is a Multi-user system, which means more than one user can work in the same system at the same time. We are allowed to do so through the Setup agent.
+
+We must have to create an account in order to work with Linux as we cannot keep working with the root account. We have one administrative account; a system administrator account is responsible for managing the user accounts and groups of the system.
+
+Adding or removing a user is one of the most basic tasks of a new Linux server.
+
+We are given only a root user account by a new Linux server. Adding a user account provides lots of power and accessibility to a particular user. It is a useful but insecure utility of the Linux server. It is good to add an unprivileged user to do common tasks. However, we can access the administrative privilege through sudo command-line utility.
+
+Create User in Linux (Ubuntu)
+There are two most common ways to add a user to a Linux server.
+
+Graphically through user manager
+By the useradd command (Terminal)
+1. By Graphically through user manager
+Linux GUI allows us to create a user from its functions. It is a straight forward process. To create a user to your Linux server, follow the below steps:
+
+Step1: Goto system search and search for the setting and navigate to Detail-> About.
+
+Step2: Click on the Users after that Unlock option given on the header. It will ask for the system security password to enter the password and click ok to continue. Consider the below image:
+
+Linux Create User
+Step3: Click on the Add User option to add a new user.
+
+Linux Create User
+Step4: Enter the user details like username and password and account type. We can create two types of accounts, which are Standard and Administrator. The standard account does not contain the sudo privilege. However, we can provide it later.
+
+Linux Create User
+Step5: Now, we have successfully created a new user called JTP2. Consider the below image.
+
+Linux Create User
+2. By the Linux useradd command
+In Linux, useradd command is a command-line utility which is used to add or remove a user on a Linux server and Unix based operating system.
+
+In a different type of Linux distribution, the useradd command may be slightly different.
+
+The useradd command performs the below tasks:
+
+It edits the files for newly created user like /etc/passwd, /etc/shadow, /etc/group and /etc/gshadow.
+It creates and opens a new home directory.
+It allows us to set ownerships and permissions to the home directory.
+Syntax:
+
+useradd [options] username  
+In order to use the useradd command, we have to log-in with root or sudo access.
+
+Before using Linux useradd command, let's understand some common terms that are used in the Linux command line.
+
+Username: A username is a name that is used to login to the Linux system. It is displayed when we turn on our machine. The username length should be between 1 to 32 characters.
+Password: A password is a secret code that is used to protect your system from unauthorized access. It is stored in etc/shadow file in an encrypted format.
+
+User ID (UID): Linux provide a unique Id to every user; it is called user identification number or User ID or UID. By default, the UID for the root user is reserved as zero, and the remaining UID from 1 to 99 is reserved for other predefined accounts. Further, UID's from 100-999 are reserved for groups and system accounts.
+
+Group ID (GID): The GID or Group ID is a group identification number provided by the Linux system. It is stored in /etc/group file.
+
+User Info: It allows us to define some additional information about the user, such as user full name. It is optional.
+
+Home Directory: It is an absolute location for a user.
+
+Shell: It is an absolute location of a user's shell i.e. /bin/bash.
+
+To create a new user by useradd command, execute the useradd command followed by username as follows:
+
+sudo useradd JTP3  
+The above command will ask for the system administration password, enter the password. It will create a user named as JTP3. This username is used by the user to login the system. The username must be unique. Consider the below output:
+
+Linux Create User
+To set the password for the newly created user, execute the below command:
+
+sudo passwd JTP3  
+The above command will ask for the new password, enter the password and retype the new password. It will update the password for the specified user. Consider the below output:
+
+Linux Create User
+Create a user with a home directory
+Sometimes the newly created user may or may not assign a home directory. To create a user and to forcefully assign a home directory to it, execute the below command:
+
+sudo useradd -m Demo  
+Consider the below snap of terminal:
+
+Linux Create User
+The above command will ask for the system administration password and create a directory home/Demo for the user Demo.
+
+Create a user with a different home directory
+Linux allows us to create a home directory on a different place instead of the default folder. Use the -d option with useradd command to create a different home directory. Execute the below command:
+
+sudo useradd -m -d /Demo1 Demo1  
+The above command will create a Demo1 folder under the root directory for the user Demo1. Consider the below snap of the terminal:
+
+Linux Create User
+Create a user with an expiry date
+To create a user with an expiry date that means after a particular date, it will be auto-deleted.
+
+sudo useradd -d /home/test -e 2020-03-16 Demo2  
+The above command will create a user with a specified expiry date. It will create a user named Demo2, which will be auto-deleted after 16 March 2020. Consider the below snap of the terminal:
+
+Linux Create User
+It will be useful when you want to create an account for any user who is going to depart after a short period.
+================
+
+Linux su Commands
+The su command allows you to run a shell as another user.
+
+Syntax:
+
+su <username>  
+Example:
+
+su jtp  
+Linux su Commands1
+Look at the above snapshot, user account is changed from sssit to jtp.
+
+su to root
+You can change the user to root when you know the root password.
+
+Syntax:
+
+su root  
+Linux su Commands2
+su as root
+The root user can become any existing user without knowing that user's password. Otherwise, password is needed.
+
+Example:
+
+su - sssit  
+Linux su Commands3
+Look at the above snapshot, it is asking for password while switching from user jtp to sssit.
+
+Now let's look at the following example.
+
+Example:
+
+su - jtp  
+Linux su Commands4
+Look at the above snapshot, we are at user root. While switching from root to jtp it didn't ask for password and we're successfully arrived at user jtp.
+
+su - $username
+By default, the su command maintains the same shell environment. To access the target user's shell environment use the su command with (-) followed by the target user name.
+
+Example:
+
+su - jtp  
+su jtp  
+Linux su Commands5
+Look at the above snapshot, with the command "su - jtp" current shell environment is /home/jtp and user is also jtp. With the command "su jtp" current shell environment is /home/sssit and user is sssit.
+
+su -
+If any user name is not mentioned then by default, it will assume root as the target user.
+
+Example:
+
+su -  
+Linux su Commands6
+Look at the above snapshot, command "su -" has assumed root as the target.
+
+Running Program As Another User / sudo Command
+The sudo command allows a user to start programs with the credentials of another user.
+
+Example:
+
+/usr/sbin/useradd -m akki  
+Linux su Commands7
+Look at the above snapshot, shell gives the above message while creating usr 'akki'.
+
+Command With sudo
+With sudo command we're allowed to create new users on the system without becoming root or without knowing the root password.
+
+Example:
+
+sudo /usr/sbin/useradd -m akki  
+Linux su Commands8
+Look at the above snapshot, user 'akki' is created with sudo command.
+
+sudo su -
+By default, some Linux systems like Ubuntu, don't have a password set for root user. It means you can't login as root user.
+
+To perform root like task, a user is given all sudo rights via etc/sudoers. All the users that are members of the admin group can use sudo command for performing root tasks.
+
+Syntax:
+
+grep admin /etc/sudoers  
+Linux su Commands9
+Look at the above snapshot, commnd "grep admin /etc/sudoers" allows all the admin group users to gain root peivileges.
+
+By typing sudo su - a user can become root user without typing password for root. The sudo command will ask for the user's own password.
+
+Syntax:
+
+sudo su -  
+Linux su Commands10
+Look at the above snapshot, bash is asking for sssit password not for root password, after that we are logged in as root user.
+
+==================
+Linux User Management
+User management includes everything from creating a user to deleting a user on your system. User management can be done in three ways on a Linux system.
+
+Graphical tools are easy and suitable for new users, as it makes sure you'll not run into any trouble.
+
+Command line tools includes commands like useradd, userdel, passwd, etc. These are mostly used by the server administrators.
+
+Third and very rare tool is to edit the local configuration files directly using vi.
+
+/etc/passwd  
+The local user database in Linux is /etc/passwd directory.
+
+Linux Local User Management1
+Look at the above snapshot, it has seven columns separated by a colon. Starting from the left columns denotes username, an x, user id, primary group id, a description, name of home directory and a login shell.
+
+root
+The root user is the superuser and have all the powers for creating a user, deleting a user and can even login with the other user's account. The root user always has userid 0.
+
+Linux Local User Management2
+useradd
+With useradd commands you can add a user.
+
+Syntax:
+
+useradd -m -d /home/<userName> -c "<userName>" <userName>  
+Example:
+
+useradd -m -d /home/xyz -c "xyz" xyz  
+Linux Local User Management3
+Look at the above snapshot, we have created a user xyz along with creating a home directory (-m), setting the name of home directory (-d), and a description (-c).
+
+The 'xyz' received userid as 1004 and primary group id as 1004.
+
+/etc/default/useradd
+File /etc/default/useradd contains some user default options. The command useradd -D can be used to display this file.
+
+Syntax:
+
+useradd -D  
+Linux Local User Management4
+userdel
+To delete a user account userdel command is used.
+
+Syntax:
+
+userdel -r <userName>  
+Linux Local User Management5
+Example:
+
+userdel -r xyz  
+Look at the above snapshot, first we have shown the xyz user account with 'tail' command. To delete it, command "userdel -r xyz" is passed.
+
+To recheck, again 'tail' command is passed and as you can see no xyz user account is displayed.
+
+Hence, it is deleted.
+
+usermod
+The command usermod is used to modify the properties of an existing user.
+
+Syntax:
+
+usermod -c <'newName'> <oldName>  
+Example:
+
+usermod -c 'jhonny' john  
+Linux Local User Management6
+Look at the above snapshot, user name john is replaced by the new user name jhonny
+
+/etc/skel/
+The /etc/skel/ contains some hidden files which have profile settings and default values for applications. Hence, it serves as a default home directory and user profile. While using useradd -m option, the /etc/skel/ is copied to the newly created directory.
+
+Linux Local User Management7
+Look at the above snapshot, files of /etc/skel/ is listed.
+
+Deleting Home Directories
+By using userdel -r option, you can delete home directory along with user account.
+
+Syntax:
+
+userdel -r <userName>  
+Example:
+
+userdel -r john  
+Linux Local User Management8
+Look at the above snapshot, both home directory as well as user account john is deleted.
+
+Login Shell
+The /etc/passwd file also tells about the login shell for the user.
+
+Linux Local User Management9
+Look at the above snapshot, user guest will log in with /bin/bash shell and user jtp will log in with /bin/ksh shell.
+
+You can change the shell mode with usermod command for a user.
+
+Syntax:
+
+usermod -s <newShell> <userName>  
+Example:
+
+usermod -s /bin/bash jtp  
+Linux Local User Management10
+Look at the above snapshot, shell of jtp is changed to /bin/bash from /bin/ksh.
+
+chsh
+Users can change their login shell with chsh command.
+
+Both the command chsh and chsh -s will work to change the shell.
+
+Syntax:
+
+chsh  
+Linux Local User Management11
+Look at the above snapshot, command chsh has changed the sssit login shell from /bin/sh to /bin/bash.
+
+Syntax:
+
+chsh -s <newShell>  
+Example:
+
+chsh -s /bin/sh  
+Linux Local User Management12
+Look at the above snapshot, login shell is changed into /bin/s.
+=============
+Linux User Password
+This chapter tells you about the local users password. You will learn here to change the password, set the password using different methods.
+
+First method is by using passwd command.
+
+Second method is with openssel passwd command.
+
+Using passwd command
+passwd
+
+A user can set the password with the command passwd. Old password has to be typed twice before entering the new one.
+
+Syntax:
+
+passwd  
+Linux User Password1
+Look at the above snapshot, shell warns the user from creating a simple password. Ultimately, after two or three attempts if password is not changed then the command passwd fails and you have to pass the command again.
+
+Although, these rules are not applied on the root user neither they need to type the old password. They can change the password directly.
+
+Syntax:
+
+passwd <userName>  
+Example:
+
+passwd jtp  
+Linux User Password2
+Look at the above snapshot, password is changed successfully without any warning.
+
+Shadow File
+Shadow files are the encrypted user passwords which are kept in /etc/shadow. This file is read-only directory and can be read only by root.
+
+Syntax:
+
+/etc/shadow  
+Linux User Password3
+Look at the above snapshot, the /etc/shadow file contains nine columns separeted by colons.
+
+Starting from left to right, these nine columns contain username, encrypted password, last changed password day, number of days password must be left unchanged, password expiry day, warning number of days before password expiry, number of days after expiry before disabling the account, and the day account was disabled. Last column has no meaning yet.
+
+Encryption With passwd
+Passwords are always stored in encrypted format. Encryption is done with crypt function. The simplest way to add a user with a password is to add the user with the command useradd -m and then set the user's password with command passwd.
+
+Syntax:
+
+useradd -m <userName>  
+Example:
+
+useradd -m akki  
+Syntax:
+
+passwd <typePassword>  
+Example:
+
+passwd ****  
+Linux User Password4
+Look at the above snapshot, user name akki is created with a password successfully.
+
+Using openssl passwd
+Encryption With openssl
+
+To create a user with a password -p option is also used, but that requires an encrypted password.
+
+Thid encrypted password can be generated with openssl passwd command.
+
+openssl passwd command can genereate several distinct hashes for the same pssword. To do this, it uses salt.
+Linux User Password5
+This salt can be chosen and is visible as the first two characters of the hash as shown below.
+
+Linux User Password6
+Look at the above snapshot, the first two characters start from the defined sale '32'.
+
+To create a user with password using openssl command, following syntax is used.
+
+Syntax:
+
+useradd -m -p $(openssl paeewd hunter2) <userName>  
+Example:
+
+useradd -m -p $(openssl paeewd hunter2) aaa  
+Linux User Password7
+Look at the above snapshot, user aaa is created and its password is kept into command history.
+
+/etc/login.defs
+The /etc/login.defs file contains some default settings like password aging and length settings.,
+
+Syntax:
+
+grep PASS /etc/login.defs  
+Linux User Password8
+chage
+The chage command can be used by a user to know the information about their password. The -l option is used to list the information.
+
+Syntax:
+
+chage -l <userName>  
+Example:
+
+chage -l abc  
+Linux User Password9
+Disabling A Password
+Passwords in /etc/shadow are not saved starting with exclamation mark (!). If exclamation mark is present in starting then password can not be used.
+
+This feature can be used to disable a password and the process is called locking, disabling and suspending a user account. It can be done in vi or with usermod command.
+
+Here, we'll disable the password of akki with usermod command.
+
+Syntax:
+
+usermod -L <userName>  
+Example:
+
+usermod -L akki  
+Linux User Password10
+Look at the above snapshot, first command shows hashed password of akki, and command "usermod -L akki" disables the password of akki. Now user akki can't authenticate using this password.
+
+Linux User Password11
+Look at the above snapshot, hashed password is preceded with !, which means it is disabled.
+
+Please note that root user will be able to open the akki account as password is not needed here. And if user akki wouldn't have set password, then akki can also login.
+
+You can unlock your account with usermod -U.
+
+Syntax:
+
+usermod -U <userName>  
+Example:
+
+usermod -U akki  
+Linux User Password12
+Look at the above snapshot, hashed password of akki is unlocked now as there is no (!) mark in starting.
+============
+Linux Groups
+Users can be listed in different groups. Group allow us to set permission on the group level instead of setting the permission on individual level.
+
+Every Linux distribution have a graphical tool to manage groups. Groups can be managed by graphical tools, command line tools and by vi or vigr depending upon the user's experience. Only experienced users should use vi or vigr to manage groups, since it will do proper locking or changes in the file.
+
+groupadd
+
+The groupadd command creates or add a group in our system.
+
+Syntax:
+
+groupadd <groupName>  
+Example:
+
+groupadd php  
+groupadd java  
+groupadd android  
+groupadd spring  
+Linux Local Group1
+Look at the above snapshot, groups php, java, android and spring are created with groupadd command.
+
+Group File
+The /etc/group file defines the group membership. A user can be a member of more than one group.
+
+Syntax:
+
+/etc/group  
+Linux Local Group2
+Look at the above snapshot, first column indicates group name, second is the group's encrypted password which may remain empty also, third is group identification (GID) and fourth is the list of members. Fourth list is empty as these groups do not have members.
+
+Groups
+The group command tells about the group where current user belongs to.
+
+Syntax:
+
+groups  
+Linux Local Group3
+Look at the above snapshot, user jtp and sssit belongs to the different groups.
+
+usermod
+The group members can be edited with usermod or useradd command. If a group is not listed then by default, usermod command will remove the user from every group of which he is a member. Here, -a (append) option is used to prevent this from happening.
+
+Syntax:
+
+usermod -a -G <group> <userName>  
+Example:
+
+usermod -a -G php akki  
+usermod -a -G php abc  
+usermod -a -G java jtp  
+Linux Local Group4
+Look at the above snapshot, we have displayed the list of /etc/group. User akki and abc are added into the group php, user jtp is added into java.
+
+groupmod
+With the help of groupmod command you can change the name of an already existing group.
+
+Syntax:
+
+groupmod -n <oldGroup> <newGroup>  
+Example:
+
+groupmod -n sql spring  
+Linux Local Group5
+Look at the above snapshot, group spring is changed into sql.
+
+gruopdel
+The command groupdel will delete a group permanently from the system.
+
+Syntax:
+
+groupdel <group>  
+Example:
+
+groupdel sql  
+Linux Local Group6
+Look at the above snapshot, group sql is deleted from the system.
+
+gpasswd
+Control of group membership can be passed on to another user with gpasswd command.
+
+Syntax:
+
+gpsswd -A <user> <group>  
+Example:
+
+gpasswd -A jtp java  
+Linux Local Group7
+Look at the above snapshot, we have passed the membership of java to the user with command "gpasswd -A jtp java". Then we su to jtp and add aaa to java.
+
+Group administrators need not to be a member of the group. They can add or remove a member without being a member of that group.
+
+File /etc/gshadow keeps the information about the group administrators as shown in below snapshot.
+
+Linux Local Group8
+To remove all the administrators from a group, set an empty administrator list.
+
+Syntax:
+
+gpasswd -A "" <group>  
+Example:
+
+gpasswd -A "" java  
+Linux Local Group9
+Look at the above snapshot, administrator jtp is removed from the group java.
+=============
+
+</h4>
+</pre></html>

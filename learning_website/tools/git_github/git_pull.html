@@ -1,0 +1,59 @@
+<html><h2><u><center>Git Pull/ Pull Request</center></u>
+<h4><pre>
+<h3><u>Git Pull -</u></h3>
+1. The pull command is used to access/pull the changes (commits) from a remote repository to the local repository.
+2. It updates the local branches with the remote-tracking branches.
+3. <u>Remote tracking branches are the branches that have been set up to push and pull from the remote repository.</u>
+4. <mark>Generally, it is a collection of the fetch and merge command . ( Git Pull = Git Fetch + Git Merge)</mark>
+5. First, it fetches the changes from remote and combine them with the local repository.
+
+Example -> git pull option [repository_URL refspec]
+
+where, option => can be -q(quiet), -v(verbose), -e(edit) and more.
+
+refspec => A ref is referred to commit. For example, head(branches), tags and remote branches. You can check head, tags and remote repository
+           in .git/ref directory on your local repository. Refspec specifies and updates the refs.
+		   
+There are many specific options available for pull command. Let's have a look at some of its usage.
+
+<u>1. Default git pull :-</u>
+
+example -> git pull
+
+<mark>Note: The git pull command is equivalent to git fetch origin head and git merge head. <u>The head is referred to as the ref of current branch.</u></mark>
+ 
+<u>2. Git Pull Remote Branch:-</u>
+i. Git allow fetching a particular branch. Fetching a remote branch is a similar process, as mentioned above, in git pull command.
+ii. The only difference is we have to copy the URL of the particular branch we want to pull.
+
+example -> git pull remote_branch_URL
+
+<u>3. Git Force Pull:-</u>
+i. Git force pull allows for pulling your repository at any cost.
+ii. If you have updated any file locally and other team members updated it on the remote. So, when you will fetch the repository, it may create a conflict.
+iii. We can say force pull is used for overwriting the files.
+iv. If we want to discard all the changes in the local repository, then we can overwrite it by influentially pulling it.
+
+<u>4. Git Pull Origin Master</u>
+
+example -> $ git pull options remote / branchname
+	   $ git pull origin master
+		   
+	   where, origin stands for the repository location where the remote repository situated.
+	   Master is considered as the main branch of the project.
+		   
+Note: You can check the remote location of your repository from command (git remote -v)
+
+<h3><u>Git Pull Request -</u></h3>
+1. Pull request is a process for a developer to notify team members that they have completed a feature. 
+2. Once their feature branch is ready, the developer files a pull request via their remote server account.
+3. Pull request announces all the team members that they need to review the code and merge in into the master branch.  
+4. Pull request allows you to announce a change made by you in the branch. 
+5. Once a pull request is opened, you are allowed to converse and review the changes made by others. 
+6. It allows reviewing commits before merging into the main branch.
+7.Pull request is created when you commited a change in the GitHub project, and you want it to be reviewed by other members.
+8. You can commit the changes into the new branch or an existing branch.
+9. Once you've created a pull request, you can push commits from your branch to add them to your existing pull request. 
+
+ </pre></h4>
+</h2></html>

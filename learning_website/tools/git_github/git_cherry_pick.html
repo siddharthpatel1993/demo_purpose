@@ -1,0 +1,33 @@
+<html><h2><u><center>Git Cherry-pick</center></u>
+<h4><pre>
+1. Cherry-picking in git stands for applying some commit from one branch into another branch.
+2. In case you made a mistake and commited a change into the wrong branch, but do not want to merge the whole branch. You can revert the commit and apply it on another branch.   
+3. The main motive of a cherry-pick is to apply the changes introduced by some existing commit.
+4. The cherry-pick looks at a pervious commit in the repository history and update the changes that were part of the last commit to the current working tree.
+
+Why Cherry-Pick
+
+Suppose you are working with a team of developers on a medium to large-sized project. Some changes proposed by another team member and you want to apply some of them to your
+main project, not all. Since managing the changes between several git branches can become a complex task, and you don't want to merge a whole branch into another branch.
+You only need to pick one or two specific commits. To pick some changes into your main project branch from other branches is called cherry-picking.
+
+Steps to do cherry-picking - 
+1. Copy the particular commit id that you want to make on the master branch.
+2. Now switch to the master branch and cherry-pick it there.
+
+Example -> $ git cherry-pick commit_id
+
+Some scenarious in which you can cherry-pick:
+Scenario 1: Accidently make a commit in a wrong branch 
+Scenario 2: Make the changes proposes by another team member. 
+
+Usage of cherry pick:
+1. It is handy tool for team collaboration.
+2. It is necessary in case of bug fixing because bugs are fixed and tested in the development branch with their commits.
+3. It is mostly used in undoing changes and restoring lost commits.
+4. You can avoid useless conflicts by using by using git cherry-pic instead of other options.
+5. It is useful tool when a full branch merge is not possible due to incompatible versions in the various branches.
+6. The git cherry-pick is used to access the changes introduced to a sub-branch, without changing the branch.
+
+</h4></pre>
+</h2></html>

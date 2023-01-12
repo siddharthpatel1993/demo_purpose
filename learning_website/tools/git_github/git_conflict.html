@@ -1,0 +1,20 @@
+<html><h2><u>Git Conflict</u></h2>
+<h4><pre>
+1. When two branches are trying to merge, and both are edited at the same time and in the same file, Git won't be able to identify which version is to take for changes.
+2. Such a situation is called merge conflict.
+3. If such situations occurs, it stops just before the merge commit so that you can resolve the conflicts manually.
+4. When same name file having different content in different branches. If you do merge, conflict occurs (resolve conflict then add and commit.)
+
+<h3><u>Resolve Conflict:-</u></h3>
+-> To resolve the conflict, it is necessary to know whether the conflict ooccurs and why it occurs.
+-> Git merge tool command is used to resolve the conflict.
+
+Example -> $ git mergetool
+
+To resolve the conflict, enter in the insert mode by merely pressing I key and make changes as you want. Then press ESC key, to come out from the insert mode.
+Type the :w! at the bottom of the editor to save and exit the changes. 
+To accept the changes, use the rebase command.
+
+Example -> $ git rebase --continue
+
+</pre></h4></html>

@@ -1,0 +1,68 @@
+<html><h2><u><center>IAM part three</center></u></h2>
+<h4><pre>
+<h3><u>Permissions and Policies</u></h3>
+-> The access management portion of AWS identity and access management (IAM) helps you to define that what a user or other entity is allowed to do in an account, often 
+   referred to as authorization.
+-> Permissions are granted through policies that are created and then attached to users, groups and roles.
+
+<h3><u>Policies and Users</u></h3>
+-> By default, IAM users can't access anything in your account.
+-> You grant permissions to a user by creating a policy, which is a document that defines the effect, actions, resource and optional conditions.
+-> Any actions or resources that are not explicitly allowed are denied by default. 
+
+<h3><u>IAM Multiple Policies</u></h3>
+-> Users or groups can have multiple policies attached to them that grant different permission.
+-> In the case of multiple policies attached to a user (or a group), the user's permission are calculated based on the combination of policies.
+
+<h3><u>Federated Users and Roles</u></h3>
+-> Federated user don't have permanent identities in your AWS account the way that IAM users do.
+-> To assign permissions to federated users you can create an entity referred to as a 'role' and define permission for the role.
+-> When a federated user sign-in to AWS, the user is associated with the role and is granted the permission that are defined in the role.
+
+<h3><u>Resource Based Policies</u></h3>
+-> In some cases (like S3 bucket), you can attach a policy to a resource in addition to attaching in to a group or user. This is called a Resource Based Policy.
+-> A Resource Based Policy contains slightly different information then a user-based Policy.
+-> In a Resource Based Policy you specify what actions are permitted and what resources is affected.
+-> You also explicitly list who is allowed access to the resource ( a Principal).
+-> Resource based policies include a principal element that specifies who is granted the permissions.  
+
+<h3><u>IAM User - The Root User</u></h3>
+-> When you first create an AWS account, you create an account (or root user) identity, which you use to sign-in to AWS.
+-> The 'account root user' credentials are email address used to create the account and a password, which can be used to sign-in to the AWS management console as the root 
+   user.
+-> When you sign-in as the root user, you have complete, unrestricted access to all resources in your AWS account, including access to your billing information and ability 
+   to change the password.
+-> This level of access is necessary when you initially set up the account.
+-> It is not possible to restrict the permission that are granted to the AWS account root user.  
+
+<h3><u>AWS recommends that</u></h3>
+-> AWS recommends that you don't use root user credentials for everyday access.
+-> Also, AWS recommends that you do not share your root user credentials with anyone, because doing so gives them unrestricted access to your account.
+-> Create IAM user for yourself and then assign yourself administrative permission for your account.
+-> You can then sign-in as that user to add more users as needed.
+-> An IAM user with administrator permissions is not the same things as the AWS account root user. 
+
+<h3><u>IAM Users</u></h3>
+-> An IAM user is an entity that you can create in AWS. It represents the person or service who uses IAM user to interact with AWS.
+-> An IAM user can represent an actual person or an application that requires AWS access to perform action on AWS resources.
+-> IAM users are global entities, like an AWS account is today. No region is required to be specified when you define user permission. Users can use AWS services in any 
+   Geographical region.
+
+<h3><u>For any user you can assign them </u></h3>
+-> A username and password to access the AWS console.
+-> An access key (access key ID and secret key) that they use for programmatic access (issuing request) to your AWS services using API and CLI.
+-> You assign either or both based on the user activities and needs.
+-> You can view and download your secret access key only when you create the access key.
+-> You cannot view or recover a secret access key later.
+-> If you lose your secret access key, you can create a new access key. 
+-> Each IAM user is associated with one AWS account.
+
+<h3><u>By default a new IAM user</u></h3>
+-> A new IAM user has no permission to do anything.
+-> Has no password and no access key (neither an access key ID nor a secret access key). It means no credentials of any kind.
+-> You must create the type of credentials for an IAM user bases on what the user will be doing.
+-> You can grant user permissions by attaching IAM policies to them directly or making them members of IAM group where they inherit the group policies and permissions.
+-> You can have upto 5000 users per AWS account.
+
+</h4>
+</pre></html>
